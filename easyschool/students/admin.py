@@ -14,3 +14,15 @@ class StudentAdmin(admin.ModelAdmin):
         )
     
     ordering = ('first_name',)
+
+    fieldsets = (
+        ("School Record", {
+            'fields' : ('admission_no',)
+        }),
+        ("Personal Information", {
+            'fields' : ('first_name', 'last_name', 'date_of_birth', 'address')
+        }),
+        ("Guardian Information", {
+            'fields' : ('father_name', 'father_cnic', 'fathers_phone_no', 'fathers_proffesion')
+        })
+    )
