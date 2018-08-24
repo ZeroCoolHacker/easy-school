@@ -21,3 +21,20 @@ class Student(models.Model):
     
     def __repr__(self):
         return 'Student(Adm:'+self.admission_no+', name:'+self.__str__()
+
+
+class StudentFee(models.Model):
+    """ Datatabase Model for student fees"""
+
+    student     =   models.ForeignKey(Student, on_delete=models.CASCADE)
+    month       =   models.CharField(blank=False, max_length=10)
+    amount      =   models.IntegerField()
+    date_submitted = models.DateTimeField(auto_now_add=True)
+
+    
+    def __str__(self):
+        return 'Fee : '+ self.student.first_name+' '+self.student.last_name+' : '+self.month
+    
+    def __repr__(self):
+        return self.__str__()
+    
