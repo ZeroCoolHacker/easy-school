@@ -1,15 +1,60 @@
 from django.contrib import admin
 from .models import Student, StudentFee
+from django.utils.html import format_html
+import calendar
+from datetime import date
 # Register your models here.
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     """ Display Class of Student Model in Admin Panel"""
 
+    #Custom Actions
+    def expel_from_school(self, request, queryset):
+        rows_updated = queryset.update(is_studying=False)
+        if rows_updated == 1:
+            message_bit = "1 student was"
+        else:
+            message_bit = "%s students were" % rows_updated
+        self.message_user(request, "%s successfully marked as expelled" % message_bit)
+    expel_from_school.short_description = 'Expel From School'
+    expel_from_school.allowed_permissions = ('change',)
+
 
     def upper_case_name(self):
         return ("%s %s" % (self.first_name, self.last_name)).capitalize()
     upper_case_name.short_description = 'Name'
+
+    def last_fee_submitted(self):
+        paid_color  = 'green'
+        unpaid_color = 'red'
+
+        if self.is_studying:
+            obj = self.studentfee_set.last()
+            if obj is not None:# if a record exists
+                if obj.month >= date.today().month and obj.year >= date.today().year: # if paid this month
+                    return format_html(
+                        '<span style="color: {};">{}</span>',
+                        paid_color,
+                        calendar.month_name[obj.month]+','+str(obj.year)
+                    )
+                else: # if not paid this month 
+                    return format_html(
+                    '<span style="color: {};">{}</span>',
+                    unpaid_color,
+                    calendar.month_name[obj.month]+','+str(obj.year)
+                )
+            else: # if record does not exists
+                return format_html(
+                    '<span style="color: {};">{}</span>',
+                    unpaid_color,
+                    "No Fee Paid"
+                )
+        else:
+            return "Left School"
+    last_fee_submitted.short_description = 'Last Fee Submitted'
+
+
 
     empty_value_display = '--Empty--'
 
@@ -17,9 +62,9 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = (
         upper_case_name,
          'father_name',
-         'date_of_birth',
-         'fathers_phone_no',
-         'is_studying', 'gender'
+         'is_studying',
+         'gender',
+         last_fee_submitted,
         )
 
 
@@ -49,6 +94,8 @@ class StudentAdmin(admin.ModelAdmin):
             'fields' : ('father_name', 'father_cnic', 'fathers_phone_no', 'fathers_proffesion')
         })
     )
+
+    actions = ['expel_from_school',]
 
 
     def get_readonly_fields(self, request, obj=None):
