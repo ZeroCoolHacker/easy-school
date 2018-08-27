@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Student, StudentFee
 from django.utils.html import format_html
+from django.utils.html import mark_safe
 import calendar
 from datetime import date
 # Register your models here.
@@ -67,6 +68,16 @@ class StudentAdmin(admin.ModelAdmin):
             return "Left School"
     last_fee_submitted.short_description = 'Last Fee Submitted'
 
+    def profile_image_display(self, obj):
+        return mark_safe(
+            '<a href={url} target="_blank"><img src="{url}" width="{width}" \
+            height={height} style={style} /></a>'.format(
+            url = obj.profile_image.url,
+            width=200,
+            height=200,
+            style='',
+            )
+        )
 
 
     empty_value_display = '--Empty--'
@@ -98,7 +109,13 @@ class StudentAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("School Record", {
-            'fields' : ('admission_no', 'date_of_admission', 'is_studying', 'current_class')
+            'fields' : (
+                'admission_no', 
+                'date_of_admission',
+                'is_studying',
+                'current_class',
+                'profile_image_display',#callable function,
+                )
         }),
         ("Personal Information", {
             'fields' : ('first_name', 'last_name', 'date_of_birth', 'gender', 'address')
@@ -118,7 +135,7 @@ class StudentAdmin(admin.ModelAdmin):
         """
         
         if obj:# if the object exists then make them readonly
-            return ['admission_no', 'date_of_admission']
+            return ['admission_no', 'date_of_admission', 'profile_image_display']
         else:
             return []
     
@@ -135,3 +152,8 @@ class StudentFeeAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
+
+    # Filtering
+    list_filter = (
+        'month',
+    )

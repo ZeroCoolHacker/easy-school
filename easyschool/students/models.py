@@ -9,6 +9,10 @@ GENDER_CHOICES = (
     ('F', 'Female')
 )
 
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.admission_no, filename)
+
 class Student(models.Model):
     admission_no    = models.IntegerField(unique=True)
     date_of_admission= models.DateField()
@@ -23,6 +27,7 @@ class Student(models.Model):
     address         = models.CharField(max_length=150, default="Not Set")
     is_studying     = models.BooleanField(default=True)
     current_class   = models.ForeignKey(Course, on_delete=models.CASCADE)
+    profile_image   = models.ImageField(upload_to=user_directory_path, blank=True)
 
     def __str__(self):
         return self.first_name+' '+self.last_name
