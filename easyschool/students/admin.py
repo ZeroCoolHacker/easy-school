@@ -5,10 +5,23 @@ import calendar
 from datetime import date
 # Register your models here.
 
+
+
+admin.site.site_header  = "My School Admin"
+admin.site.site_title   = "My School Admin Portal"
+admin.site.index_title  = "Welcome to My School Portal"
+
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
     """ Display Class of Student Model in Admin Panel"""
 
+    #remove delete actions
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+    
     #Custom Actions
     def expel_from_school(self, request, queryset):
         rows_updated = queryset.update(is_studying=False)
@@ -114,5 +127,11 @@ class StudentAdmin(admin.ModelAdmin):
 @admin.register(StudentFee)
 class StudentFeeAdmin(admin.ModelAdmin):
     """ Admin display class for the model StudentFee """
-    pass
+    
+    # Delete Delete Action from admin
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
 
