@@ -78,7 +78,7 @@ class StudentAdmin(admin.ModelAdmin):
             style='',
             )
         )
-
+    profile_image_display.short_description = "Student Image"
 
     empty_value_display = '--Empty--'
 
@@ -114,6 +114,7 @@ class StudentAdmin(admin.ModelAdmin):
                 'date_of_admission',
                 'is_studying',
                 'current_class',
+                'profile_image',
                 'profile_image_display',#callable function,
                 )
         }),
