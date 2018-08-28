@@ -54,7 +54,7 @@ class StudentFee(models.Model):
 
     @property
     def month_name(self):
-        return calendar.month_name(self.month)
+        return calendar.month_name[self.month]
     
     def __str__(self):
         return 'Fee : '+ self.student.first_name+' '+self.student.last_name+' : '+str(self.month)
