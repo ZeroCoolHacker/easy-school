@@ -158,3 +158,16 @@ class StudentFeeAdmin(admin.ModelAdmin):
     list_filter = (
         'month',
     )
+    
+    #searching
+    search_fields = [
+        'student__admission_no',
+        'student__first_name',
+        'student__last_name',
+    ]
+
+    list_display = (
+        'month',
+        'amount',
+        'date_submitted',
+    )
