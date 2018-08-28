@@ -35,10 +35,6 @@ class StudentAdmin(admin.ModelAdmin):
     expel_from_school.allowed_permissions = ('change',)
 
 
-    def upper_case_name(self):
-        return ("%s %s" % (self.first_name, self.last_name)).capitalize()
-    upper_case_name.short_description = 'Name'
-
     def last_fee_submitted(self):
         paid_color  = 'green'
         unpaid_color = 'red'
@@ -84,7 +80,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
     list_display = (
-        upper_case_name,
+         'full_name',
          'father_name',
          'is_studying',
          'gender',

@@ -29,6 +29,11 @@ class Student(models.Model):
     current_class   = models.ForeignKey(Course, on_delete=models.CASCADE)
     profile_image   = models.ImageField(upload_to=user_directory_path, blank=True)
 
+    @property
+    def full_name(self):
+        return '{} {}'.format(self.first_name, self.last_name).capitalize()
+
+    
     def __str__(self):
         return self.first_name+' '+self.last_name
     
