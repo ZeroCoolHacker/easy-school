@@ -2,6 +2,7 @@ from django.db import models
 from course.models import Course
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
+import calendar
 # Create your models here.
 
 GENDER_CHOICES = (
@@ -51,6 +52,9 @@ class StudentFee(models.Model):
     amount      =   models.IntegerField()
     date_submitted = models.DateTimeField(auto_now_add=True)
 
+    @property
+    def month_name(self):
+        return calendar.month_name(self.month)
     
     def __str__(self):
         return 'Fee : '+ self.student.first_name+' '+self.student.last_name+' : '+str(self.month)
