@@ -1,0 +1,7 @@
+Django==2.1
+django-filter==2.0.0
+djangorestframework==3.8.2
+Markdown==2.6.11
+Pillow==5.2.0
+pkg-resources==0.0.0
+pytz==2018.5
