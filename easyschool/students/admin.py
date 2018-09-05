@@ -134,7 +134,7 @@ class StudentAdmin(admin.ModelAdmin):
         if obj:# if the object exists then make them readonly
             return ['admission_no', 'date_of_admission', 'profile_image_display']
         else:
-            return []
+            return ['profile_image_display',]
     
 
 
