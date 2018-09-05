@@ -10,6 +10,21 @@ GENDER_CHOICES = (
     ('F', 'Female')
 )
 
+MONTHS_CHOICE = (
+    ('1', 'January'),
+    ('2', 'February'),
+    ('3', 'March'),
+    ('4', 'April'),
+    ('5', 'May'),
+    ('6', 'June'),
+    ('7', 'July'),
+    ('8', 'August'),
+    ('9', 'September'),
+    ('10', 'October'),
+    ('11', 'November'),
+    ('12', 'December')
+)
+
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
     return 'user_{0}/{1}'.format(instance.admission_no, filename)
@@ -45,7 +60,7 @@ class StudentFee(models.Model):
     """ Datatabase Model for student fees"""
 
     student     =   models.ForeignKey(Student, on_delete=models.CASCADE)
-    month       =   models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(12)])
+    month       =   models.CharField(max_length=2, choices=MONTHS_CHOICE)
     year        =   models.IntegerField(validators=[MinValueValidator(date.today().year-1),
                                         MaxValueValidator(date.today().year)],
                                         default=date.today().year)
