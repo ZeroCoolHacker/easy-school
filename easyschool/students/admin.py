@@ -42,17 +42,17 @@ class StudentAdmin(admin.ModelAdmin):
         if self.is_studying:
             obj = self.studentfee_set.last()
             if obj is not None:# if a record exists
-                if obj.month >= date.today().month and obj.year >= date.today().year: # if paid this month
+                if int(obj.month) >= date.today().month and obj.year >= date.today().year: # if paid this month
                     return format_html(
                         '<span style="color: {};">{}</span>',
                         paid_color,
-                        calendar.month_name[obj.month]+','+str(obj.year)
+                        calendar.month_name[int(obj.month)]+','+str(obj.year)
                     )
                 else: # if not paid this month 
                     return format_html(
                     '<span style="color: {};">{}</span>',
                     unpaid_color,
-                    calendar.month_name[obj.month]+','+str(obj.year)
+                    calendar.month_name[int(obj.month)]+','+str(obj.year)
                 )
             else: # if record does not exists
                 return format_html(
