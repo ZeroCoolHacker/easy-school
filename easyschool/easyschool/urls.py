@@ -29,4 +29,9 @@ urlpatterns = [
     url(r'^api/students/', include('students.api.urls')),
 ]
 if settings.DEBUG:
+    import debug_toolbar # Add debugging urls
+    urlpatterns += [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ]
+    # Static Files URLS
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
