@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'students.apps.StudentsConfig',
     'course.apps.CourseConfig',
     'rest_framework',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
