@@ -49,9 +49,13 @@ class Student(models.Model):
     def full_name(self):
         return '{} {}'.format(self.first_name, self.last_name).capitalize()
 
-    
+    @property
+    def detail(self):
+        return '{} Class - {}'.format(self.current_class, self.full_name)
+
+
     def __str__(self):
-        return self.first_name+' '+self.last_name
+        return self.detail
     
 
 
