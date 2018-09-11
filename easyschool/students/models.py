@@ -71,6 +71,17 @@ class StudentFee(models.Model):
     amount      =   models.IntegerField()
     date_submitted = models.DateTimeField(auto_now_add=True)
 
+    def clean_month(self):
+        """Checks if the fee for this month has been submitted"""
+        print("clean_month called")
+        month = self.cleaned_data['month']
+        year = self.cleaned_data['year']
+        qs = StudentFee.objects.get(month__iexact=month, year__iexact=year)
+        if qs is not None:
+            raise forms.ValidationError("Fee for {} has been submitted".format(month))
+        return self.cleaned_data
+
+
     @property
     def month_name(self):
         return calendar.month_name[self.month]
@@ -81,3 +92,4 @@ class StudentFee(models.Model):
     def __repr__(self):
         return self.__str__()
     
+
