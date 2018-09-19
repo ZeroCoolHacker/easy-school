@@ -45,10 +45,13 @@ class Student(models.Model):
     current_class   = models.ForeignKey(Course, on_delete=models.CASCADE)
     profile_image   = models.ImageField(upload_to=user_directory_path, blank=True)
 
-    @property
+    
     def full_name(self):
         return '{} {}'.format(self.first_name, self.last_name).capitalize()
+    full_name.admin_order_field = 'first_name'
+    property(full_name)
 
+    
     @property
     def detail(self):
         return '{} Class - {}'.format(self.current_class, self.full_name)
