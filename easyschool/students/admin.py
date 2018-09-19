@@ -4,6 +4,7 @@ from django.utils.html import format_html
 from django.utils.html import mark_safe
 import calendar
 from datetime import date
+from .forms import StudentFeeAdd
 # Register your models here.
 
 
@@ -149,6 +150,12 @@ class StudentFeeAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
+    def get_form(self, request, obj=None, **kwargs):
+        """  The form to give django admin"""
+        if obj is None:
+            return StudentFeeAdd
+        else:
+            super(StudentFeeAdmin, self).get_form(request, obj, **kwargs)
 
     # Filtering
     list_filter = (
