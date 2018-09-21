@@ -150,13 +150,7 @@ class StudentFeeAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
-    def get_form(self, request, obj=None, **kwargs):
-        """  The form to give django admin"""
-        if obj is None:
-            return StudentFeeAdd
-        else:
-            super(StudentFeeAdmin, self).get_form(request, obj, **kwargs)
-
+    form = StudentFeeAdd 
 
     raw_id_fields = ("student",)
     # Filtering
