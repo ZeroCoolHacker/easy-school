@@ -157,6 +157,8 @@ class StudentFeeAdmin(admin.ModelAdmin):
         else:
             super(StudentFeeAdmin, self).get_form(request, obj, **kwargs)
 
+
+    raw_id_fields = ("student",)
     # Filtering
     list_filter = (
         'month',
@@ -170,6 +172,7 @@ class StudentFeeAdmin(admin.ModelAdmin):
     ]
 
     list_display = (
+        'student',
         'month',
         'amount',
         'date_submitted',
