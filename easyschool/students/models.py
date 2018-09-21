@@ -49,7 +49,7 @@ class Student(models.Model):
     def full_name(self):
         return '{} {}'.format(self.first_name, self.last_name).capitalize()
     full_name.admin_order_field = 'first_name'
-    property(full_name)
+    full_name = property(full_name)
 
     
     @property
