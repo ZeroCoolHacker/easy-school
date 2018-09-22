@@ -57,7 +57,7 @@ class Student(models.Model):
 
 
     def __str__(self):
-        return self.detail
+        return self.full_name()
     
 
 
