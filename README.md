@@ -10,33 +10,53 @@ Setting up Easy School is very easy.
 
 It is best to use the python `virtualenv` tool to build locally:
 
-```sh
-$ virtualenv venv
-$ source venv/bin/activate
-$ git clone https://github.com/ZeroCoolHacker/easy-school .
+```bash
+> virtualenv venv
+> source venv/bin/activate
+> git clone https://github.com/ZeroCoolHacker/easy-school .
 ```
 Then you navigate to the base directory of the project and install the requirements in your virtual environment
 
-```sh
-$ cd easy-school/easy-school
-$ pip install -r requirements.txt
+```bash
+> cd easy-school/easy-school
+> pip install -r requirements.txt
 ```
 And finally you make migrations to the database, create a super user, and run the server
-``sh
-$ python manage.py makemigrations
-$ python manage.py migrate
-$ python manage.py createsuperuser
-$ python manage.py runserver
+```bash
+> python manage.py makemigrations
+> python manage.py migrate
+> python manage.py createsuperuser
+> python manage.py runserver
 ```
 
 Then visit `http://localhost:8000` to view the app. Alternatively you
 can use foreman and gunicorn to run the server locally (after copying
 `dev.env` to `.env`):
 
-```sh
-$ foreman start
+```bash
+> foreman start
 ```
+
+# Contributing
+
+Just follow the steps above to setup your environment.
+1. Create a new branch with the obvious name
+2. Open up issue in the issues tab
+3. Be sure you test your code first hand before sending a pull request.
+ 
+# To do
+
+- [x] Manage Students Record in admin
+- [x] Submit fees in admin
+- [x] Show last submitted fee along with students
+- [x] Link Students to different Courses
+- [x] Search the record by various fields
+- [x] Minimize the number of queries for each view
+- [ ] Add Teachers Record to admin
+- [ ] Create Signup and Login view for teachers
+- [ ] Attendence Management
+- [ ] Result management for different Exams
 ## Licensing
 
 This library is BSD-licensed.
-
+Just go use it man i don't care!
