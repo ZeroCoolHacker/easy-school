@@ -14,10 +14,18 @@ It is best to use the python `virtualenv` tool to build locally:
 $ virtualenv venv
 $ source venv/bin/activate
 $ git clone https://github.com/ZeroCoolHacker/easy-school .
+```
+Then you navigate to the base directory of the project and install the requirements in your virtual environment
+
+```sh
 $ cd easy-school/easy-school
 $ pip install -r requirements.txt
+```
+And finally you make migrations to the database, create a super user, and run the server
+``sh
 $ python manage.py makemigrations
 $ python manage.py migrate
+$ python manage.py createsuperuser
 $ python manage.py runserver
 ```
 
