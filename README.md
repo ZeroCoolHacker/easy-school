@@ -57,6 +57,5 @@ Just follow the steps above to setup your environment.
 - [ ] Attendence Management
 - [ ] Result management for different Exams
 ## Licensing
+This Project is Licensed under [GLWTPL](./LICENSE)
 
-This library is BSD-licensed.
-Just go use it man i don't care!
