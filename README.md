@@ -40,10 +40,7 @@ can use foreman and gunicorn to run the server locally (after copying
 # Contributing
 
 Just follow the steps above to setup your environment.
-1. Create a new branch with the obvious name
-2. Open up issue in the issues tab
-3. Be sure you test your code first hand before sending a pull request.
- 
+Read the [Contribution Guide](./CONTRIBUTION.md)
 # To do
 
 - [x] Manage Students Record in admin
