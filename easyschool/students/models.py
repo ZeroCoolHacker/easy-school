@@ -3,27 +3,9 @@ from course.models import Course
 from django.core.validators import MinValueValidator, MaxValueValidator
 from datetime import date
 import calendar
+from easyschool.utils import GENDER_CHOICES, MONTHS_CHOICE
+
 # Create your models here.
-
-GENDER_CHOICES = (
-    ('M', 'Male'),
-    ('F', 'Female')
-)
-
-MONTHS_CHOICE = (
-    ('1', 'January'),
-    ('2', 'February'),
-    ('3', 'March'),
-    ('4', 'April'),
-    ('5', 'May'),
-    ('6', 'June'),
-    ('7', 'July'),
-    ('8', 'August'),
-    ('9', 'September'),
-    ('10', 'October'),
-    ('11', 'November'),
-    ('12', 'December')
-)
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
