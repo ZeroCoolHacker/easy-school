@@ -25,7 +25,7 @@ class Teacher(models.Model):
     profile_image   = models.ImageField(upload_to=user_directory_path, blank=True)
 
     class Meta:
-        """Meta definition for MODELNAME."""
+        """Meta definition for Teacher."""
 
         verbose_name = 'Teacher'
         verbose_name_plural = 'Teachers'
