@@ -23,3 +23,13 @@ class Teacher(models.Model):
     address         = models.CharField(max_length=150, default="Not Set")
     is_teaching    = models.BooleanField(default=True)
     profile_image   = models.ImageField(upload_to=user_directory_path, blank=True)
+
+    class Meta:
+        """Meta definition for MODELNAME."""
+
+        verbose_name = 'Teacher'
+        verbose_name_plural = 'Teachers'
+
+    def __str__(self):
+        """Unicode representation of MODELNAME."""
+        return '{} {}'.format(self.user.first_name, self.user.last_name)
