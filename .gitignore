@@ -1,5 +1,8 @@
-easyschool/db.sqlite3
-.vscode/settings.json
-easyschool/.vscode/settings.json
+*.log
+*.pot
 *.pyc
+__pycache__/
 media/
+.env
+db.sqlite3
+settings.json
