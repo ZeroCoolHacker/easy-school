@@ -30,6 +30,12 @@ class Teacher(models.Model):
         verbose_name = 'Teacher'
         verbose_name_plural = 'Teachers'
 
+    @property
+    def full_name(self):
+        """Returns full name of teacher"""
+        return self.__str__()
+
+    
     def __str__(self):
-        """Unicode representation of MODELNAME."""
+        """Unicode representation of Teacher."""
         return '{} {}'.format(self.user.first_name, self.user.last_name)
