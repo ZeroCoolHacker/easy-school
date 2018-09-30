@@ -5,6 +5,7 @@ from django.utils.html import mark_safe
 import calendar
 from datetime import date
 from .forms import StudentFeeAdd
+from django.db.models import Count, Sum
 # Register your models here.
 
 
@@ -181,3 +182,28 @@ class FeeSummary(admin.ModelAdmin):
     
     change_list_template = 'student/admin/fee_summary_change_list.html'
     date_hierarchy = 'date_submitted'
+
+    def changelist_view(self, request, extra_context=None):
+        """ My own view of change_list template """
+
+        response = super().changelist_view(
+            request,
+            extra_context=extra_context
+            )
+
+        try:
+            qs = response.context_data['cl'].queryset
+        except (AttributeError, KeyError):
+            return response
+        
+        metrics = {
+            'total': Count('id'),
+            'total_fee' : Sum('amount'),
+        }
+
+        response.context_data['summary'] = list(
+            qs.values('month').annotate(**metrics).order_by('-total_fee')
+        )
+        print(response.context_data['summary'])
+
+        return response
