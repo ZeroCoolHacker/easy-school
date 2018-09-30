@@ -68,3 +68,15 @@ class StudentFee(models.Model):
         return self.__str__()
     
 
+# Proxy models for dashboards
+
+class FeeSummary(StudentFee):
+    """
+    Proxy Model of StudentFee to add extra functionality
+    without creating new table in the database
+    """
+
+    
+    class Meta:
+        proxy = True
+        verbose_name_plural = verbose_name = 'Fee Summary'
