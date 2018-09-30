@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Student, StudentFee
+from .models import Student, StudentFee, FeeSummary
 from django.utils.html import format_html
 from django.utils.html import mark_safe
 import calendar
 from datetime import date
 from .forms import StudentFeeAdd
+from django.db.models import Min, Max, Count, Sum, DateTimeField
+from django.db.models.functions import Trunc
 # Register your models here.
 
 
@@ -171,3 +173,64 @@ class StudentFeeAdmin(admin.ModelAdmin):
         'amount',
         'date_submitted',
     )
+
+
+@admin.register(FeeSummary)
+class FeeSummary(admin.ModelAdmin):
+    """
+    Admin Dashboard configuration for displaying FeeSummary
+    """
+    
+    change_list_template = 'student/admin/fee_summary_change_list.html'
+    date_hierarchy = 'date_submitted'
+
+    def changelist_view(self, request, extra_context=None):
+        """ My own view of change_list template """
+
+        response = super().changelist_view(
+            request,
+            extra_context=extra_context
+            )
+
+        try:
+            qs = response.context_data['cl'].queryset
+        except (AttributeError, KeyError):
+            return response
+        
+        metrics = {
+            'total': Count('id'),
+            'total_fee' : Sum('amount'),
+        }
+
+        response.context_data['summary'] = list(
+            qs.values('month').annotate(**metrics).order_by('-total_fee')
+        )
+
+        summary_over_time = qs.annotate(
+            period = Trunc(
+                'date_submitted',
+                'month',
+                output_field=DateTimeField()
+            ),
+        ).values('period').annotate(total=Sum('amount')).order_by('period')
+
+        summary_range = summary_over_time.aggregate(
+            low=Min('total'),
+            high=Max('total')
+        )
+
+        high = summary_range.get('high', 0)
+        low = summary_range.get('low', 0)
+        print('High ', high)
+        print('Low ', low)
+        response.context_data['summary_over_time'] = [
+            {
+                'period' : x['period'],
+                'total' : x['total'] or 0,
+                'percentage' : ((x['total'] or 0)) / high * 100 
+                if high > low else 0,
+            } for x in summary_over_time
+        ]
+        
+        print(response.context_data['summary_over_time'])
+        return response
