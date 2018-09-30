@@ -3,6 +3,41 @@
     <h1> Fee Summary </h1>
 {% endblock %}
 {% block result_list %}
-    This is our working are now :p
+    <div class="results">
+        <table>
+
+            <thead>
+                <tr>
+                    <th>
+                        <div class="text">
+                            <a href="#">Month</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">Number of Fee</a>
+                        </div>
+                    </th>
+                    <th>
+                        <div class="text">
+                            <a href="#">
+                                <strong>Total Fee Submitted</strong>
+                            </a>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for row in summary %}
+                    <tr class="{% cycle 'row1' 'row2' %}">
+                        <td> {{row.month}} </td>
+                        <td> {{row.total }} </td>
+                        <td> <strong>{{row.total_fee | default:0 }} Rs.</strong> </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
 {% block pagination %}{% endblock %}
