@@ -49,7 +49,7 @@ Read the [Contribution Guide](./CONTRIBUTION.md)
 - [x] Link Students to different Courses
 - [x] Search the record by various fields
 - [x] Minimize the number of queries for each view
-- [ ] Add Teachers Record to admin
+- [x] Add Teachers Record to admin
 - [ ] Create Signup and Login view for teachers
 - [ ] Attendence Management
 - [ ] Result management for different Exams
