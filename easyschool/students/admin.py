@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, StudentFee
+from .models import Student, StudentFee, FeeSummary
 from django.utils.html import format_html
 from django.utils.html import mark_safe
 import calendar
@@ -171,3 +171,13 @@ class StudentFeeAdmin(admin.ModelAdmin):
         'amount',
         'date_submitted',
     )
+
+
+@admin.register(FeeSummary)
+class FeeSummary(admin.ModelAdmin):
+    """
+    Admin Dashboard configuration for displaying FeeSummary
+    """
+    
+    change_list_template = 'student/admin/fee_summary_change_list.html'
+    date_hierarchy = 'date_submitted'
