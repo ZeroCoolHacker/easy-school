@@ -30,8 +30,7 @@ And finally you make migrations to the database, create a super user, and run th
 ```
 
 Then visit `http://localhost:8000` to view the app. Alternatively you
-can use foreman and gunicorn to run the server locally (after copying
-`dev.env` to `.env`):
+can use foreman and gunicorn to run the server locally
 
 ```bash
 > foreman start
