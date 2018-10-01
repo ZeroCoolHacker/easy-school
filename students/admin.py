@@ -201,7 +201,7 @@ class FeeSummary(admin.ModelAdmin):
         }
 
         response.context_data['summary'] = list(
-            qs.values('month').annotate(**metrics).order_by('-total_fee')
+            qs.values('month').annotate(**metrics).order_by('month')
         )
 
         summary_over_time = qs.annotate(
