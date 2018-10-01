@@ -6,3 +6,6 @@ media/
 .env
 db.sqlite3
 settings.json
+
+# PyCharm
+.idea
