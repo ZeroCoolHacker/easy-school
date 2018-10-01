@@ -49,9 +49,7 @@ class StudentFee(models.Model):
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     month = models.CharField(max_length=2, choices=MONTHS_CHOICE)
-    year = models.IntegerField(validators=[MinValueValidator(date.today().year - 1),
-                                           MaxValueValidator(date.today().year)],
-                               default=date.today().year)
+    year = models.IntegerField(default=date.today().year)
     amount = models.IntegerField()
     date_submitted = models.DateTimeField(auto_now_add=True)
 
