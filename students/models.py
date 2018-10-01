@@ -1,8 +1,9 @@
 import calendar
-from datetime import date
+from datetime import date, datetime
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
+from django.utils import timezone
 
 from course.models import Course
 from easyschool.utils import GENDER_CHOICES, MONTHS_CHOICE
@@ -50,30 +51,27 @@ class StudentFee(models.Model):
     """ Datatabase Model for student fees"""
 
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    month = models.CharField(max_length=2, choices=MONTHS_CHOICE)
-    year = models.IntegerField(default=date.today().year)
+    date = models.DateField(default=timezone.now())
     amount = models.IntegerField()
     date_submitted = models.DateTimeField(auto_now_add=True)
 
     @property
     def month_name(self):
-        return calendar.month_name[self.month]
+        return calendar.month_name[date.month]
 
     def __str__(self):
-        return 'Fee : ' + self.student.first_name + ' ' + self.student.last_name + ' : ' + str(self.month)
+        return 'Fee : ' + self.student.first_name + ' ' + self.student.last_name + ' : ' + str(self.date)
 
     def __repr__(self):
         return self.__str__()
 
 
-# Proxy models for dashboards
-
 class FeeSummary(StudentFee):
     """
-    Proxy Model of StudentFee to add extra functionality
-    without creating new table in the database
+    https://medium.com/@hakibenita/how-to-turn-django-admin-into-a-lightweight-dashboard-a0e0bbf609ad
     """
 
     class Meta:
         proxy = True
-        verbose_name_plural = verbose_name = 'Fee Summary'
+        verbose_name = 'Fee Summary'
+        verbose_name_plural = 'Fee Summary'

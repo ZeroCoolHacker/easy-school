@@ -10,9 +10,8 @@ class StudentFeeAdd(forms.ModelForm):
 
     def clean(self):
         """Checks if the fee for this month has been submitted"""
-        print("clean_month called")
-        month = self.cleaned_data['month']
-        year = self.cleaned_data['year']
+        month = self.cleaned_data['date'].month
+        year = self.cleaned_data['date'].year
         qs = StudentFee.objects.filter(
             month__iexact=month,
             year__iexact=year,
@@ -27,7 +26,6 @@ class StudentFeeAdd(forms.ModelForm):
         model = StudentFee
         fields = (
             'student',
-            'month',
-            'year',
+            'date',
             'amount',
         )

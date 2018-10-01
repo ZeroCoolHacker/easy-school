@@ -2,8 +2,7 @@ import calendar
 from datetime import date
 
 from django.contrib import admin
-from django.db.models import Min, Max, Count, Sum, DateTimeField
-from django.db.models.functions import Trunc
+from django.db.models import Sum, Count
 from django.utils.html import format_html
 from django.utils.html import mark_safe
 
@@ -155,7 +154,7 @@ class StudentFeeAdmin(admin.ModelAdmin):
     raw_id_fields = ("student",)
     # Filtering
     list_filter = (
-        'month',
+        'date',
     )
 
     # searching
@@ -167,7 +166,7 @@ class StudentFeeAdmin(admin.ModelAdmin):
 
     list_display = (
         'student',
-        'month',
+        'date',
         'amount',
         'date_submitted',
     )
@@ -175,19 +174,13 @@ class StudentFeeAdmin(admin.ModelAdmin):
 
 @admin.register(FeeSummary)
 class FeeSummary(admin.ModelAdmin):
-    """
-    Admin Dashboard configuration for displaying FeeSummary
-    """
-
-    change_list_template = 'student/admin/fee_summary_change_list.html'
-    date_hierarchy = 'date_submitted'
+    change_list_template = 'students/admin/fee_summary_change_list.html'
+    date_hierarchy = 'date'
 
     def changelist_view(self, request, extra_context=None):
-        """ My own view of change_list template """
-
         response = super().changelist_view(
             request,
-            extra_context=extra_context
+            extra_context=extra_context,
         )
 
         try:
@@ -197,38 +190,18 @@ class FeeSummary(admin.ModelAdmin):
 
         metrics = {
             'total': Count('id'),
-            'total_fee': Sum('amount'),
+            'total_sales': Sum('amount'),
         }
 
         response.context_data['summary'] = list(
-            qs.values('month').annotate(**metrics).order_by('month')
+            qs
+                .values('date')
+                .annotate(**metrics)
+                .order_by('date')
         )
 
-        summary_over_time = qs.annotate(
-            period=Trunc(
-                'date_submitted',
-                'month',
-                output_field=DateTimeField()
-            ),
-        ).values('period').annotate(total=Sum('amount')).order_by('period')
-
-        summary_range = summary_over_time.aggregate(
-            low=Min('total'),
-            high=Max('total')
+        response.context_data['summary_total'] = dict(
+            qs.aggregate(**metrics)
         )
 
-        high = summary_range.get('high', 0)
-        low = summary_range.get('low', 0)
-        print('High ', high)
-        print('Low ', low)
-        response.context_data['summary_over_time'] = [
-            {
-                'period': x['period'],
-                'total': x['total'] or 0,
-                'percentage': ((x['total'] or 0)) / high * 100
-                if high > low else 0,
-            } for x in summary_over_time
-        ]
-
-        print(response.context_data['summary_over_time'])
         return response
