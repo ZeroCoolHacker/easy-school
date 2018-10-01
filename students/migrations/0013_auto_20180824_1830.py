@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ('students', '0012_studentfee_year'),
     ]
@@ -14,6 +13,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='studentfee',
             name='year',
-            field=models.IntegerField(default=2018, validators=[django.core.validators.MinValueValidator(2017), django.core.validators.MaxValueValidator(2018)]),
+            field=models.IntegerField(default=2018, validators=[django.core.validators.MinValueValidator(2017),
+                                                                django.core.validators.MaxValueValidator(2018)]),
         ),
     ]

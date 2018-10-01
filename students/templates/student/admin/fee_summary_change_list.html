@@ -1,47 +1,47 @@
 {% extends 'admin/change_list.html' %}
 {% load humanize %}
-{% load utiltags %} 
+{% load utiltags %}
 {% block content_title %}
-    <h1> Fee Summary </h1>
-    
+<h1> Fee Summary </h1>
+
 {% endblock %}
 {% block result_list %}
-    <div class="results">
-        <table>
+<div class="results">
+    <table>
 
-            <thead>
-                <tr>
-                    <th>
-                        <div class="text">
-                            <a href="#">Month</a>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="text">
-                            <a href="#">Number of Fee Submitted</a>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="text">
-                            <a href="#">
-                                <strong>Total Fee Submitted</strong>
-                            </a>
-                        </div>
-                    </th>
-                </tr>
-            </thead>
+        <thead>
+        <tr>
+            <th>
+                <div class="text">
+                    <a href="#">Month</a>
+                </div>
+            </th>
+            <th>
+                <div class="text">
+                    <a href="#">Number of Fee Submitted</a>
+                </div>
+            </th>
+            <th>
+                <div class="text">
+                    <a href="#">
+                        <strong>Total Fee Submitted</strong>
+                    </a>
+                </div>
+            </th>
+        </tr>
+        </thead>
 
-            <tbody>
-                {% for row in summary %}
-                    <tr class="{% cycle 'row1' 'row2' %}">
-                        <td> {{row.month | month_name}} </td>
-                        <td> {{row.total | intcomma}} </td>
-                        <td> <strong>{{row.total_fee | default:0 | intcomma }} Rs.</strong> </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <style>
+        <tbody>
+        {% for row in summary %}
+        <tr class="{% cycle 'row1' 'row2' %}">
+            <td> {{row.month | month_name}}</td>
+            <td> {{row.total | intcomma}}</td>
+            <td><strong>{{row.total_fee | default:0 | intcomma }} Rs.</strong></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <style>
             .bar-chart {
               display: flex;
               justify-content: space-around;
@@ -79,18 +79,19 @@
                 opacity: 1;
             }
             
-            </style>
-            <h1>Sales Over Time</h1>
-        <div class="bar-chart">
-            {% for x in summary_over_time %}
-                <div class="bar" style="height:100px">
-                    <div class="bar-tooltip">
-                        {{x.total | default:0 | intcomma }}<br>
-                        {{x.period | date:"d/m/Y"}}
-                    </div>
-                </div>
-            {% endfor %}
+
+    </style>
+    <h1>Sales Over Time</h1>
+    <div class="bar-chart">
+        {% for x in summary_over_time %}
+        <div class="bar" style="height:100px">
+            <div class="bar-tooltip">
+                {{x.total | default:0 | intcomma }}<br>
+                {{x.period | date:"d/m/Y"}}
+            </div>
         </div>
-    </div> <!-- Results -->
+        {% endfor %}
+    </div>
+</div> <!-- Results -->
 {% endblock %}
 {% block pagination %}{% endblock %}

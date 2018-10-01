@@ -1,5 +1,6 @@
-from students.models import Student
 from rest_framework import serializers
+
+from students.models import Student
 
 
 class StudentSerializer(serializers.ModelSerializer):
@@ -8,7 +9,7 @@ class StudentSerializer(serializers.ModelSerializer):
     """
 
     class Meta:
-        model   = Student
+        model = Student
         # fields = [
         #     'first_name',
         #     'last_name',
@@ -17,9 +18,9 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['gender']
 
-    #as we have a clean_<field_name> method to clean form data
+    # as we have a clean_<field_name> method to clean form data
     # we have validate_<field_name> method to validate the serializer data
-    
+
     def validate_first_name(self, value):
         qs = Student.objects.filter(first_name__iexact=value)
         if self.instance:

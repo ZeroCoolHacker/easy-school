@@ -1,7 +1,6 @@
+from django.conf.urls import url
 
 from .views import StudentRUDView, StudentCreateView, StudentListView
-
-from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^$', StudentListView.as_view(), name='student-list'),
