@@ -55,3 +55,7 @@ Read the [Contribution Guide](./CONTRIBUTION.md)
 ## Licensing
 This Project is Licensed under [GLWTPL](./LICENSE)
 
+## Hall of fame
+Everyone who contributes to EpPos gets a spot here.
+* [@ZeroCoolHacker](https://github.com/ZeroCoolHacker)
+* [@Argetan](https://github.com/Argetan)
