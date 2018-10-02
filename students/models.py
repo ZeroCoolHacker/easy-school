@@ -66,12 +66,12 @@ class StudentFee(models.Model):
         return self.__str__()
 
 
-class FeeSummary(StudentFee):
-    """
-    https://medium.com/@hakibenita/how-to-turn-django-admin-into-a-lightweight-dashboard-a0e0bbf609ad
-    """
+# class FeeSummary(StudentFee):
+#     """
+#     https://medium.com/@hakibenita/how-to-turn-django-admin-into-a-lightweight-dashboard-a0e0bbf609ad
+#     """
 
-    class Meta:
-        proxy = True
-        verbose_name = 'Fee Summary'
-        verbose_name_plural = 'Fee Summary'
+#     class Meta:
+#         proxy = True
+#         verbose_name = 'Fee Summary'
+#         verbose_name_plural = 'Fee Summary'
