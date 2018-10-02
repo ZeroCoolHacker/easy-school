@@ -12,11 +12,11 @@ class StudentFeeAdd(forms.ModelForm):
         """Checks if the fee for this month has been submitted"""
         student = self.cleaned_data['student']
         fee_group=self.cleaned_data['fee_group']
-        valid_until=self.cleaned_data['valid_until']
+        valid = self.cleaned_data['valid_until']
         qs = StudentFee.objects.filter(
-            student__iexact=student,
-            fee_group__iexact=fee_group,
-            valid_until = valid_until,
+            student=student,
+            fee_group=fee_group,
+            valid_until = valid,
             )
 
         if len(qs) is not 0:
