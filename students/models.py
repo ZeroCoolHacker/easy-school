@@ -67,13 +67,13 @@ class StudentFee(models.Model):
 
     student     = models.ForeignKey(Student, on_delete=models.PROTECT)
     fee_group   = models.ForeignKey(FeeGroup, on_delete=models.PROTECT)
-    valid_until = models.DateField(verbose_name='Valid Until', auto_now=True)
+    valid_until = models.DateField(verbose_name='Valid Until',)
     total_amount= models.PositiveIntegerField(default=0)
     date_submitted = models.DateTimeField(auto_now_add=True)
 
     @property
     def month_name(self):
-        return calendar.month_name[date.month]
+        return calendar.month_name[valid_until.month]
 
     def __str__(self):
         return 'Fee : ' + self.student.first_name + ' ' + self.student.last_name + ' : ' + str(self.date)
