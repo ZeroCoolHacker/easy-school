@@ -1,5 +1,5 @@
 import calendar
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
@@ -10,6 +10,12 @@ from easyschool.utils import GENDER_CHOICES, MONTHS_CHOICE
 
 
 # Create your models here.
+
+def next_month():
+    month = date.today().month+1
+    year = date.today().year
+    day = 1
+    return date(year, month, day)
 
 def user_directory_path(instance, filename):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
@@ -57,17 +63,14 @@ class FeeType(models.Model):
 class FeeGroup(models.Model):
     name        = models.CharField('Name', max_length=50, blank=False)
     display_name= models.CharField('Displayed Name', max_length=50, blank=False)
-    fee_types   = models.ManyToManyField(FeeType,
-    verbose_name= 'Fee Types',
-    blank=True,
-    )
+    fee_types   = models.ManyToManyField(FeeType,)
 
 class StudentFee(models.Model):
     """ Datatabase Model for student fees"""
 
     student     = models.ForeignKey(Student, on_delete=models.PROTECT)
-    fee_group   = models.ForeignKey(FeeGroup, on_delete=models.PROTECT)
-    valid_until = models.DateField(verbose_name='Valid Until',)
+    fee_group   = models.ForeignKey(FeeGroup, on_delete=models.PROTECT, null=True)
+    valid_until = models.DateField(verbose_name='Valid Until', default=next_month())
     total_amount= models.PositiveIntegerField(default=0)
     date_submitted = models.DateTimeField(auto_now_add=True)
 
@@ -76,7 +79,7 @@ class StudentFee(models.Model):
         return calendar.month_name[valid_until.month]
 
     def __str__(self):
-        return 'Fee : ' + self.student.first_name + ' ' + self.student.last_name + ' : ' + str(self.date)
+        return 'Fee : ' + self.student.first_name + ' ' + self.student.last_name + ' : ' + str(self.date_submitted)
 
     def __repr__(self):
         return self.__str__()
