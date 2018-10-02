@@ -65,9 +65,10 @@ class FeeGroup(models.Model):
 class StudentFee(models.Model):
     """ Datatabase Model for student fees"""
 
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    date = models.DateField(default=timezone.now())
-    amount = models.IntegerField()
+    student     = models.ForeignKey(Student, on_delete=models.PROTECT)
+    fee_group   = models.ForeignKey(FeeGroup, on_delete=models.PROTECT)
+    valid_until = models.DateField(verbose_name='Valid Until', auto_now=True)
+    total_amount= models.PositiveIntegerField(default=0)
     date_submitted = models.DateTimeField(auto_now_add=True)
 
     @property
