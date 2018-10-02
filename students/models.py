@@ -47,6 +47,14 @@ class Student(models.Model):
         return self.full_name()
 
 
+# Fee Models
+
+class FeeType(models.Model):
+    name        = models.CharField('Name', max_length=, blank=False)
+    display_name= models.CharField('Displayed Name', max_length=50, blank=False)
+    amount      = models.PositiveIntegerField()
+
+
 class StudentFee(models.Model):
     """ Datatabase Model for student fees"""
 
