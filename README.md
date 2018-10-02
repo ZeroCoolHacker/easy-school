@@ -39,7 +39,7 @@ can use foreman and gunicorn to run the server locally
 # Contributing
 
 Just follow the steps above to setup your environment.
-Read the [Contribution Guide](./CONTRIBUTION.md)
+Read the [Contribution Guide](CONTRIBUTION.md)
 # To do
 
 - [x] Manage Students Record in admin
@@ -53,7 +53,7 @@ Read the [Contribution Guide](./CONTRIBUTION.md)
 - [ ] Attendence Management
 - [ ] Result management for different Exams
 ## Licensing
-This Project is Licensed under [GLWTPL](./LICENSE)
+This Project is Licensed under [GLWTPL](LICENSE)
 
 ## Hall of fame
 Everyone who contributes to EpPos gets a spot here.
