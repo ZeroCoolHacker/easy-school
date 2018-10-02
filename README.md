@@ -5,7 +5,8 @@ This is a school management system that uses
 do most of the work of managing students, fee submissions, teacher records etc..
 
 Setting up Easy School is very easy.
-
+## Want to Use?
+This branch is under development right now. But if you want to use it in a small setup then you can [deploy this commit](https://github.com/ZeroCoolHacker/easy-school/tree/6ad71e3024e9abfc37ae6fb1cdec2362ed6d382a) as it is properly working except the Fee summary report 
 ## Building
 
 It is best to use the python `virtualenv` tool to build locally:
