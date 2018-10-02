@@ -10,22 +10,23 @@ class StudentFeeAdd(forms.ModelForm):
 
     def clean(self):
         """Checks if the fee for this month has been submitted"""
-        month = self.cleaned_data['date'].month
-        year = self.cleaned_data['date'].year
+        student = self.cleaned_data['student']
+        fee_group=self.cleaned_data['fee_group']
+        valid = self.cleaned_data['valid_until']
         qs = StudentFee.objects.filter(
-            month__iexact=month,
-            year__iexact=year,
-            student=self.cleaned_data['student'])
+            student=student,
+            fee_group=fee_group,
+            valid_until = valid,
+            )
 
         if len(qs) is not 0:
-            raise forms.ValidationError("Fee for {} has been submitted".
-                                        format(month_name[int(month)]))
+            raise forms.ValidationError("Fee for this month has been submitted.")
         return self.cleaned_data
 
     class Meta:
         model = StudentFee
         fields = (
             'student',
-            'date',
-            'amount',
+            'fee_group',
+            'valid_until',
         )

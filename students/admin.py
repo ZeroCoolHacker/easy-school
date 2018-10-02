@@ -7,10 +7,11 @@ from django.utils.html import format_html
 from django.utils.html import mark_safe
 
 from .forms import StudentFeeAdd
-from .models import Student, StudentFee, FeeSummary
+from .models import Student, StudentFee, FeeGroup, FeeType#, FeeSummary
 
 # Register your models here.
-
+admin.site.register(FeeGroup)
+admin.site.register(FeeType)
 
 admin.site.site_header = "My School Admin"
 admin.site.site_title = "My School Admin Portal"
@@ -47,11 +48,11 @@ class StudentAdmin(admin.ModelAdmin):
         if self.is_studying:
             obj = self.studentfee_set.last()
             if obj is not None:  # if a record exists
-                if obj.date >= date.today():  # if paid this month
+                if obj.valid_until >= date.today():  # if paid this month
                     return format_html(
                         '<span style="color: {};">{}</span>',
                         paid_color,
-                        calendar.month_name[int(obj.date.month)] + ', ' + str(obj.date.year)
+                        calendar.month_name[int(obj.valid_until.month)] + ', ' + str(obj.valid_until.year)
                     )
                 else:  # if not paid this month
                     return format_html(
@@ -151,10 +152,13 @@ class StudentFeeAdmin(admin.ModelAdmin):
 
     form = StudentFeeAdd
 
-    raw_id_fields = ("student",)
+    raw_id_fields = (
+        'student',
+        'fee_group',
+        )
     # Filtering
     list_filter = (
-        'date',
+        'valid_until',
     )
 
     # searching
@@ -166,42 +170,42 @@ class StudentFeeAdmin(admin.ModelAdmin):
 
     list_display = (
         'student',
-        'date',
-        'amount',
+        'valid_until',
+        'total_amount',
         'date_submitted',
     )
 
 
-@admin.register(FeeSummary)
-class FeeSummary(admin.ModelAdmin):
-    change_list_template = 'students/admin/fee_summary_change_list.html'
-    date_hierarchy = 'date'
+# @admin.register(FeeSummary)
+# class FeeSummary(admin.ModelAdmin):
+#     change_list_template = 'students/admin/fee_summary_change_list.html'
+#     date_hierarchy = 'date'
 
-    def changelist_view(self, request, extra_context=None):
-        response = super().changelist_view(
-            request,
-            extra_context=extra_context,
-        )
+#     def changelist_view(self, request, extra_context=None):
+#         response = super().changelist_view(
+#             request,
+#             extra_context=extra_context,
+#         )
 
-        try:
-            qs = response.context_data['cl'].queryset
-        except (AttributeError, KeyError):
-            return response
+#         try:
+#             qs = response.context_data['cl'].queryset
+#         except (AttributeError, KeyError):
+#             return response
 
-        metrics = {
-            'total': Count('id'),
-            'total_sales': Sum('amount'),
-        }
+#         metrics = {
+#             'total': Count('id'),
+#             'total_sales': Sum('amount'),
+#         }
 
-        response.context_data['summary'] = list(
-            qs
-                .values('date')
-                .annotate(**metrics)
-                .order_by('date')
-        )
+#         response.context_data['summary'] = list(
+#             qs
+#                 .values('date')
+#                 .annotate(**metrics)
+#                 .order_by('date')
+#         )
 
-        response.context_data['summary_total'] = dict(
-            qs.aggregate(**metrics)
-        )
+#         response.context_data['summary_total'] = dict(
+#             qs.aggregate(**metrics)
+#         )
 
-        return response
+#         return response
