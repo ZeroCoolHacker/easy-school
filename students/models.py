@@ -50,10 +50,17 @@ class Student(models.Model):
 # Fee Models
 
 class FeeType(models.Model):
-    name        = models.CharField('Name', max_length=, blank=False)
+    name        = models.CharField('Name', max_length=50, blank=False)
     display_name= models.CharField('Displayed Name', max_length=50, blank=False)
     amount      = models.PositiveIntegerField()
 
+class FeeGroup(models.Model):
+    name        = models.CharField('Name', max_length=50, blank=False)
+    display_name= models.CharField('Displayed Name', max_length=50, blank=False)
+    fee_types   = models.ManyToManyField(FeeType,
+    verbose_name= 'Fee Types',
+    blank=True,
+    )
 
 class StudentFee(models.Model):
     """ Datatabase Model for student fees"""
