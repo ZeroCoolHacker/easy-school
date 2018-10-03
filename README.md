@@ -36,6 +36,27 @@ can use foreman and gunicorn to run the server locally
 ```bash
 > foreman start
 ```
+# Building with Docker
+First run `docker-compose` to build the container:
+
+```bash
+docker-compose build
+```
+
+Then, run the following command to create the superuser:
+
+```bash
+docker-compose run web python manage.py createsuperuser
+```
+
+Finally, the Docker container can be launched with the following command:
+
+```bash
+docker-compose up
+```
+
+The server should be responding at 127.0.0.1:8000
+
 
 # Contributing
 
