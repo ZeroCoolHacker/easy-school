@@ -81,3 +81,4 @@ This Project is Licensed under [GLWTPL](LICENSE)
 Everyone who contributes to EpPos gets a spot here.
 * [@ZeroCoolHacker](https://github.com/ZeroCoolHacker)
 * [@Argetan](https://github.com/Argetan)
+* [@ismailuddin](https://github.com/ismailuddin)
