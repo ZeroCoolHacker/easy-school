@@ -36,7 +36,7 @@ can use foreman and gunicorn to run the server locally
 ```bash
 > foreman start
 ```
-# Building with Docker
+## Building with Docker
 First run `docker-compose` to build the container:
 
 ```bash
@@ -58,11 +58,11 @@ docker-compose up
 The server should be responding at 127.0.0.1:8000
 
 
-# Contributing
+## Contributing
 
 Just follow the steps above to setup your environment.
 Read the [Contribution Guide](CONTRIBUTION.md)
-# To do
+## To do
 
 - [x] Manage Students Record in admin
 - [x] Submit fees in admin
