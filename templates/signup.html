@@ -1,0 +1,89 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body {
+            background: #222222;
+            font-family: "Helvetica Neue","Helvetica",Arial,"Lucida   Grande",sans-serif;
+          }
+
+          h3 {
+            font-size: 1.5em;
+            font-weight: 100;
+            letter-spacing: 0.3em;
+            text-shadow: 0px 0px 20px #6EC3EC;
+            color: #6EC3EC;
+            display: inline-block;
+          }
+
+          .container {
+            font-size: 16px;
+            top: 30%;
+            left: 41%;
+            position: absolute;
+            color: #FFFFFF;
+            text-align: center;
+          }
+
+          input {
+              border-radius: 25px;
+              border-color: #6EC3EC;
+              padding: 5px;
+              font-family: "Helvetica Neue","Helvetica",Arial,"Lucida   Grande",sans-serif;
+          }
+
+          .content {
+              background-color: black;
+              border-radius: 30px;
+              padding: 25px 35px;
+          }
+
+          .placeholder{
+              color: lightgray;
+          }
+
+          .btn-custom {
+              border-radius: 15px;
+              border-color: #6EC3EC;
+              padding: 10px;
+              color: #6EC3EF;
+              background-color: black;
+          }
+
+          @keyframes load {
+            0% {
+              width: 0%;
+            }
+            50% {
+              width: 100%;
+            }
+            100% {
+              width: 0%;
+              float: right;
+            }
+          }
+
+
+    </style>
+    <title>Sign up</title>
+</head>
+
+{% block content %}
+<div class="container">
+    <div class="content">
+      <h3>Sign up</h3>
+      <form method="post">
+        {% csrf_token %}
+        <p class="placeholder">Username</p>
+        {{ form.username }}
+        <p class="placeholder">Password</p>
+        {{ form.password1 }}
+        <p class="placeholder">Password confirmation</p>
+        {{ form.password2 }}
+        <p></p>
+        <button class="btn-custom" type="submit">Confirm</button>
+      </form>
+    </div>
+</div>
+{% endblock %}

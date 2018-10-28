@@ -19,15 +19,18 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
 
+from teachers.views import SignUp
+
 
 def coming_soon(request, *args, **kwargs):
     return render(request, 'soon.html', {})
 
 
 urlpatterns = [
-    url(r'^$', coming_soon),
+    url(r'^$', coming_soon, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/students/', include('students.api.urls')),
+    url(r'^signup/', SignUp.as_view(), name='signup'),
 ]
 if settings.DEBUG:
     import debug_toolbar  # Add debugging urls
