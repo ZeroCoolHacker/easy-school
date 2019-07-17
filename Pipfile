@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 django = ">=2.1.2"
 django-filter = "==2.0.0"
-djangorestframework = "==3.8.2"
+djangorestframework = "==3.9.1"
 markdown = "==2.6.11"
 pillow = "==5.2.0"
 pytz = "==2018.5"
