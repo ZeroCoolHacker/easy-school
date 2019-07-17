@@ -13,6 +13,7 @@ markdown = "==2.6.11"
 pillow = "==5.2.0"
 pytz = "==2018.5"
 django-debug-toolbar = "==1.10"
+django-admin-interface = "*"
 
 [requires]
 python_version = "3.7"

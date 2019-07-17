@@ -9,3 +9,5 @@ settings.json
 
 # PyCharm
 .idea
+
+static/
