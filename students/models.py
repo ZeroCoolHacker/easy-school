@@ -102,3 +102,20 @@ class StudentFee(models.Model):
 #         proxy = True
 #         verbose_name = 'Fee Summary'
 #         verbose_name_plural = 'Fee Summary'
+
+
+class Guardian(models.Model):
+    """ Database Model for student guardian"""
+
+    name = models.CharField(max_length=50)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    relation_to_student = models.ForeignKey(Student, on_delete=models.PROTECT)
+    social_security_number = models.CharField(max_length=30)
+    phone_number = models.CharField(max_length=11, default="0000000")
+    profession = models.CharField(max_length=50, default="Not Set")
+
+    def __str__(self):
+        return 'Guardian : {}'.format(self.name)
+
+    def __repr__(self):
+        return self.__str__()

@@ -7,7 +7,7 @@ from django.utils.html import format_html
 from django.utils.html import mark_safe
 
 from .forms import StudentFeeAdd
-from .models import Student, StudentFee, FeeGroup, FeeType#, FeeSummary
+from .models import Student, StudentFee, FeeGroup, FeeType, Guardian #, FeeSummary,
 
 # Register your models here.
 admin.site.register(FeeGroup)
@@ -16,6 +16,11 @@ admin.site.register(FeeType)
 admin.site.site_header = "My School Admin"
 admin.site.site_title = "My School Admin Portal"
 admin.site.index_title = "Welcome to My School Portal"
+
+
+class GuardianInline(admin.TabularInline):
+    model = Guardian
+    extra = 1
 
 
 @admin.register(Student)
@@ -124,7 +129,7 @@ class StudentAdmin(admin.ModelAdmin):
             'fields': ('father_name', 'father_cnic', 'fathers_phone_no', 'fathers_proffesion')
         })
     )
-
+    inlines = [GuardianInline, ]
     actions = ['expel_from_school', ]
 
     def get_readonly_fields(self, request, obj=None):
@@ -175,6 +180,12 @@ class StudentFeeAdmin(admin.ModelAdmin):
         'date_submitted',
     )
 
+
+@admin.register(Guardian)
+class GuardianAdmin(admin.ModelAdmin):
+    list_display = (
+        'name', 'gender', 'relation_to_student', 'social_security_number', 'phone_number', 'profession'
+    )
 
 # @admin.register(FeeSummary)
 # class FeeSummary(admin.ModelAdmin):
