@@ -78,7 +78,9 @@ Read the [Contribution Guide](CONTRIBUTION.md)
 This Project is Licensed under [GLWTPL](LICENSE)
 
 ## Hall of fame
-Everyone who contributes to EpPos gets a spot here.
+Everyone who contributes to easy-school gets a spot here.
 * [@ZeroCoolHacker](https://github.com/ZeroCoolHacker)
 * [@Argetan](https://github.com/Argetan)
 * [@ismailuddin](https://github.com/ismailuddin)
+* [@davidkarabas](https://github.com/davidkarabas)
+
