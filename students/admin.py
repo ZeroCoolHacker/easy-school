@@ -93,7 +93,6 @@ class StudentAdmin(admin.ModelAdmin):
 
     list_display = (
         'full_name',
-        'father_name',
         'is_studying',
         'gender',
         last_fee_submitted,
@@ -124,9 +123,6 @@ class StudentAdmin(admin.ModelAdmin):
         }),
         ("Personal Information", {
             'fields': ('first_name', 'last_name', 'date_of_birth', 'gender', 'address')
-        }),
-        ("Guardian Information", {
-            'fields': ('father_name', 'father_cnic', 'fathers_phone_no', 'fathers_proffesion')
         })
     )
     inlines = [GuardianInline, ]
