@@ -30,11 +30,6 @@ class Student(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     date_of_birth = models.DateField()
 
-    # TODO: Create a parent/guardian model and reference that, mothers could be important too you know...
-    father_name = models.CharField(max_length=50)
-    father_cnic = models.CharField(max_length=13)
-    fathers_phone_no = models.CharField(max_length=11, default="0000000")
-    fathers_proffesion = models.CharField(max_length=50, default="Not Set")
     address = models.CharField(max_length=150, default="Not Set")
     is_studying = models.BooleanField(default=True)
     current_class = models.ForeignKey(Course, on_delete=models.CASCADE)
