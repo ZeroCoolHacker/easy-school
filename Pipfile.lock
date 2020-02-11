@@ -18,11 +18,11 @@
     "default": {
         "django": {
             "hashes": [
-                "sha256:4d23f61b26892bac785f07401bc38cbf8fa4cec993f400e9cd9ddf28fd51c0ea",
-                "sha256:6e974d4b57e3b29e4882b244d40171d6a75202ab8d2402b8e8adbd182e25cf0c"
+                "sha256:1226168be1b1c7efd0e66ee79b0e0b58b2caa7ed87717909cd8a57bb13a7079a",
+                "sha256:9a4635813e2d498a3c01b10c701fe4a515d76dd290aaa792ccb65ca4ccb6b038"
             ],
             "index": "pypi",
-            "version": "==2.2.3"
+            "version": "==2.2.10"
         },
         "django-admin-interface": {
             "hashes": [
@@ -33,10 +33,10 @@
         },
         "django-colorfield": {
             "hashes": [
-                "sha256:663e527247719469aae155859cb4d2f8938f54c2c722e714f6370bece5e7a8d2",
-                "sha256:79222b081206febb66cec4b9f912077c895509ffbdc731625d12961c97d2f4ce"
+                "sha256:c4435b4fead2bb1113e97dc21390ac843a3d942d5ad6f4b1a23644a208f5e9ed",
+                "sha256:ea72e1ce422c3516df0d2d590516e96127ff6462837fffbf0d51a0a34d05d517"
             ],
-            "version": "==0.1.15"
+            "version": "==0.1.17"
         },
         "django-debug-toolbar": {
             "hashes": [
@@ -56,15 +56,13 @@
         },
         "django-flat-responsive": {
             "hashes": [
-                "sha256:451caa2700c541b52fb7ce2d34d3d8dee9e980cf29f5463bc8a8c6256a1a6474",
-                "sha256:a9e2ab935d4b1cc6be8ef4511cff6e006550703f45d74608cc39f2df0a4b82f3"
+                "sha256:451caa2700c541b52fb7ce2d34d3d8dee9e980cf29f5463bc8a8c6256a1a6474"
             ],
             "version": "==2.0"
         },
         "django-flat-theme": {
             "hashes": [
-                "sha256:6b522d8c2b5a8228b30947fb002eff2868da076e9beacf3e798410e5c1a2d849",
-                "sha256:b4a9afdb89aca1ce41b153aa7fb94483772cd8ae185982c796b4861ec6bc5770"
+                "sha256:6b522d8c2b5a8228b30947fb002eff2868da076e9beacf3e798410e5c1a2d849"
             ],
             "version": "==1.1.4"
         },
