@@ -1,6 +1,6 @@
 -i https://pypi.org/simple/
 django-admin-interface==0.10.5
-django-colorfield==0.1.17
+django-colorfield==0.3.0
 django-debug-toolbar==1.10
 django-filter==2.0.0
 django-flat-responsive==2.0
@@ -8,6 +8,6 @@ django-flat-theme==1.1.4
 django==2.2.10
 djangorestframework==3.9.1
 markdown==2.6.11
-pillow==5.2.0
+pillow==6.2.2
 pytz==2018.5
-sqlparse==0.3.0
+sqlparse==0.3.1
