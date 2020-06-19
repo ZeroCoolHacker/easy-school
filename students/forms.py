@@ -19,7 +19,7 @@ class StudentFeeAdd(forms.ModelForm):
             valid_until = valid,
             )
 
-        if len(qs) is not 0:
+        if len(qs) != 0:
             raise forms.ValidationError("Fee for this month has been submitted.")
         return self.cleaned_data
 
