@@ -66,24 +66,27 @@
 
 
     </style>
+    
     <title>Sign up</title>
 </head>
 
-{% block content %}
+
+{% block content %}  
+
 <div class="container">
     <div class="content">
       <h3>Sign up</h3>
-      <form method="post">
+      
+      <form method="post" enctype="multipart/form-data" >
         {% csrf_token %}
-        <p class="placeholder">Username</p>
-        {{ form.username }}
-        <p class="placeholder">Password</p>
-        {{ form.password1 }}
-        <p class="placeholder">Password confirmation</p>
-        {{ form.password2 }}
-        <p></p>
-        <button class="btn-custom" type="submit">Confirm</button>
+        
+        
+      {{form.as_p}}    
+
+      <input type="submit" value="Submit"> 
       </form>
     </div>
 </div>
+<br>
+<br>
 {% endblock %}
