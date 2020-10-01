@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf import settings
 from django.conf.urls import url, include
+from django.urls import path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.shortcuts import render
 
-from teachers.views import SignUp
+from teachers.views import TeacherSignUpFormView
+from teachers.views import Login
 
 
 def coming_soon(request, *args, **kwargs):
@@ -30,7 +32,8 @@ urlpatterns = [
     url(r'^$', coming_soon, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^api/students/', include('students.api.urls')),
-    url(r'^signup/', SignUp.as_view(), name='signup'),
+    url(r'^signup/', TeacherSignUpFormView.as_view(), name='signup'),
+    path('login/',Login,name ='login'),
 ]
 if settings.DEBUG:
     import debug_toolbar  # Add debugging urls
