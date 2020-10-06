@@ -84,4 +84,4 @@ Everyone who contributes to easy-school gets a spot here.
 * [@ismailuddin](https://github.com/ismailuddin)
 * [@davidkarabas](https://github.com/davidkarabas)
 * [@mmoomocow](https://github.com/mmoomocow)
-* [@MohanChhabaria] (https://github.com/MohanChhabaria)
+* [@MohanChhabaria](https://github.com/MohanChhabaria)
