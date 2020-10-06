@@ -16,10 +16,15 @@ class Teacher(models.Model):
     Linked to django default user model
     so teacher can log in
     """
+    # choices
+    GENDERCHOICES=(
+        ('1', 'MALE'),
+        ('2', 'FEMALE')
+    )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_joining = models.DateField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=1, choices=GENDERCHOICES)
     date_of_birth = models.DateField()
     cnic = models.CharField(max_length=13)
     phone_no = models.CharField(max_length=11, default="0000000")
@@ -27,17 +32,10 @@ class Teacher(models.Model):
     is_teaching = models.BooleanField(default=True)
     profile_image = models.ImageField(upload_to=user_directory_path, blank=True)
 
-    class Meta:
-        """Meta definition for Teacher."""
-
-        verbose_name = 'Teacher'
-        verbose_name_plural = 'Teachers'
+    
 
     @property
     def full_name(self):
         """Returns full name of teacher"""
-        return self.__str__()
+        return self.user.get_full_name()
 
-    def __str__(self):
-        """Unicode representation of Teacher."""
-        return '{} {}'.format(self.user.first_name, self.user.last_name)
