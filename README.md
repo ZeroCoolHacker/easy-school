@@ -62,6 +62,7 @@ The server should be responding at 127.0.0.1:8000
 
 Just follow the steps above to setup your environment.
 Read the [Contribution Guide](CONTRIBUTION.md)
+If you have any more questions you can join the gitter room [![Gitter](https://badges.gitter.im/ZeroCoolHacker/community.svg)](https://gitter.im/ZeroCoolHacker/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 ## To do
 
 - [x] Manage Students Record in admin
