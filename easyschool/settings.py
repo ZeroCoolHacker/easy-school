@@ -130,3 +130,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Django_debug_toolbar settings
 INTERNAL_IPS = ('127.0.0.1',)
+
+# XFrame Settings
+X_FRAME_OPTIONS = 'SAMEORIGIN'
