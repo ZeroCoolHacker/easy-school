@@ -42,7 +42,6 @@ INSTALLED_APPS = [
 
     'students.apps.StudentsConfig',
     'course.apps.CourseConfig',
-    'rest_framework',
     'debug_toolbar',
     'teachers.apps.TeachersConfig',
     'django.contrib.humanize'
@@ -58,19 +57,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
-
-REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        # 'django.contrib.auth',
-    ),
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    )
-}
 
 ROOT_URLCONF = 'easyschool.urls'
 
