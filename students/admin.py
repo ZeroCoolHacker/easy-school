@@ -5,12 +5,9 @@ from django.contrib import admin
 from django.db.models import Count, Sum
 from django.utils.html import format_html, mark_safe
 
-from .forms import StudentFeeAdd
-from .models import FeeGroup, FeeType, Guardian, Student, StudentFee
+from .models import Guardian, Student, StudentFee
 
 # Register your models here.
-admin.site.register(FeeGroup)
-admin.site.register(FeeType)
 
 admin.site.site_header = "My School Admin"
 admin.site.site_title = "My School Admin Portal"
@@ -62,7 +59,7 @@ class StudentAdmin(admin.ModelAdmin):
                     return format_html(
                         '<span style="color: {};">{}</span>',
                         unpaid_color,
-                        f'{calendar.month_name[int(fee.date.month)]}, {str(fee.date.year)}',
+                        f'{calendar.month_name[int(fee.valid_until.month)]}, {str(fee.valid_until.year)}',
                     )
             else:  # if record does not exists
                 return format_html(
@@ -160,14 +157,9 @@ class StudentFeeAdmin(admin.ModelAdmin):
             del actions['delete_selected']
         return actions
 
-    form = StudentFeeAdd
-
-    raw_id_fields = (
-        'student',
-        'fee_group',
-    )
+    raw_id_fields = ('student',)
     # Filtering
-    list_filter = ('valid_until',)
+    list_filter = ('valid_until', 'total_amount')
 
     # searching
     search_fields = [
