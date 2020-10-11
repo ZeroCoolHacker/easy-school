@@ -46,6 +46,9 @@ class StudentFee(models.Model):
     total_amount = models.PositiveIntegerField(default=0)
     date_submitted = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        verbose_name_plural = 'Student Fee'
+
     def __str__(self):
         return f'Fee : {self.student.full_name()} {str(self.date_submitted)}'
 
