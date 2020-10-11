@@ -6,14 +6,7 @@ from django.db import models
 from django.utils import timezone
 
 from course.models import Course
-from easyschool.utils import GENDER_CHOICES, MONTHS_CHOICE
-
-
-def next_month():
-    month = date.today().month + 1
-    year = date.today().year
-    day = 1
-    return date(year, month, day)
+from easyschool.utils import GENDER_CHOICES, MONTHS_CHOICE, next_month
 
 
 def user_directory_path(instance, filename):
@@ -54,7 +47,7 @@ class StudentFee(models.Model):
     date_submitted = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Fee : {self.student.full_name} {str(self.date_submitted)}'
+        return f'Fee : {self.student.full_name()} {str(self.date_submitted)}'
 
     @property
     def month_name(self):
