@@ -6,14 +6,12 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-django = ">=2.1.2"
-django-filter = "==2.0.0"
-djangorestframework = "==3.9.1"
-markdown = "==2.6.11"
-pillow = "==6.2.2"
-pytz = "==2018.5"
-django-debug-toolbar = "==1.10"
+django = ">=3.1"
+django-filter = "*"
+pillow = "*"
+pytz = "*"
+django-debug-toolbar = "*"
 django-admin-interface = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"

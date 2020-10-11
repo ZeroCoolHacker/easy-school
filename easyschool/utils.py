@@ -1,3 +1,5 @@
+from datetime import date
+
 GENDER_CHOICES = (
     ('M', 'Male'),
     ('F', 'Female')
@@ -17,3 +19,10 @@ MONTHS_CHOICE = (
     ('11', 'November'),
     ('12', 'December')
 )
+
+
+def next_month():
+    month = date.today().month + 1
+    year = date.today().year
+    day = 1
+    return date(year, month, day)

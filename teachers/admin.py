@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Teacher
+from .models import Teacher, TeacherSalary
 
 
 # Change User Creation Form
@@ -58,3 +58,31 @@ class TeacherAdmin(admin.ModelAdmin):
     )
 
     ordering = ('-date_of_joining',)
+
+
+@admin.register(TeacherSalary)
+class TeacherSalaryAdmin(admin.ModelAdmin):
+    """ Admin display class for the model StudentFee """
+
+    # Delete Delete Action from admin
+    def get_actions(self, request):
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
+
+    raw_id_fields = ('teacher',)
+    # Filtering
+    list_filter = ('valid_until', 'total_amount')
+
+    # searching
+    search_fields = [
+        'techer__full_name',
+    ]
+
+    list_display = (
+        'teacher',
+        'valid_until',
+        'total_amount',
+        'paid_on',
+    )
