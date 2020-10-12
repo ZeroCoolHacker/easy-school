@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "mrunderline",
+      "name": "ali madihi bidgoli",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/23085360?v=4",
+      "profile": "https://github.com/mrunderline",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "easy-school",
+  "projectOwner": "ZeroCoolHacker",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
