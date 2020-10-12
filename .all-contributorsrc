@@ -32,6 +32,16 @@
         "code"
       ]
     },
+    {
+      "login": "adamzavacky",
+      "name": "adamzavacky",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/44172077?v=4",
+      "profile": "https://github.com/adamzavacky",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    }
   ],
   "contributorsPerLine": 7,
   "projectName": "easy-school",
