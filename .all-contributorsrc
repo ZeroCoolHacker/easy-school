@@ -51,6 +51,17 @@
         "code",
         "bug"
       ]
+    }
+    {
+      "login": "mmoomocow",
+      "name": "mmoomocow",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/44288823?v=4",
+      "profile": "https://github.com/mmoomocow",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    }
   ],
   "contributorsPerLine": 7,
   "projectName": "easy-school",
