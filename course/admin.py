@@ -1,11 +1,12 @@
 from django.contrib import admin
 
 from .models import Course
+from easyschool.utils import ExportCsvMixin
 
 
 # Register your models here.
 @admin.register(Course)
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(admin.ModelAdmin, ExportCsvMixin):
     """Admin Display Options to display the Course data in admin panel"""
 
     list_display = (
@@ -16,3 +17,7 @@ class CourseAdmin(admin.ModelAdmin):
     search_fields = (
         'course_name',
     )
+
+    actions = [
+        'export_as_csv',
+    ]

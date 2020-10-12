@@ -6,6 +6,7 @@ from django.db.models import Count, Sum
 from django.utils.html import format_html, mark_safe
 
 from .models import Guardian, Student, StudentFee
+from easyschool.utils import ExportCsvMixin
 
 # Register your models here.
 
@@ -20,7 +21,7 @@ class GuardianInline(admin.TabularInline):
 
 
 @admin.register(Student)
-class StudentAdmin(admin.ModelAdmin):
+class StudentAdmin(admin.ModelAdmin, ExportCsvMixin):
     """ Display Class of Student Model in Admin Panel"""
 
     # remove delete actions
@@ -130,6 +131,7 @@ class StudentAdmin(admin.ModelAdmin):
     ]
     actions = [
         'expel_from_school',
+        'export_as_csv',
     ]
 
     def get_readonly_fields(self, request, obj=None):
@@ -147,7 +149,7 @@ class StudentAdmin(admin.ModelAdmin):
 
 
 @admin.register(StudentFee)
-class StudentFeeAdmin(admin.ModelAdmin):
+class StudentFeeAdmin(admin.ModelAdmin, ExportCsvMixin):
     """ Admin display class for the model StudentFee """
 
     # Delete Delete Action from admin
@@ -175,9 +177,13 @@ class StudentFeeAdmin(admin.ModelAdmin):
         'date_submitted',
     )
 
+    actions = [
+        'export_as_csv',
+    ]
+
 
 @admin.register(Guardian)
-class GuardianAdmin(admin.ModelAdmin):
+class GuardianAdmin(admin.ModelAdmin, ExportCsvMixin):
     list_display = (
         'name',
         'gender',
@@ -186,3 +192,7 @@ class GuardianAdmin(admin.ModelAdmin):
         'phone_number',
         'profession',
     )
+
+    actions = [
+        'export_as_csv',
+    ]

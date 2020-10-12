@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from .models import Teacher, TeacherSalary
+from easyschool.utils import ExportCsvMixin
 
 
 # Change User Creation Form
@@ -35,7 +36,7 @@ admin.site.register(User, UserAdmin)
 # Register your models here.
 
 @admin.register(Teacher)
-class TeacherAdmin(admin.ModelAdmin):
+class TeacherAdmin(admin.ModelAdmin, ExportCsvMixin):
     '''Admin View for Teacher'''
 
     list_display = (
@@ -59,9 +60,13 @@ class TeacherAdmin(admin.ModelAdmin):
 
     ordering = ('-date_of_joining',)
 
+    actions = [
+        'export_as_csv',
+    ]
+
 
 @admin.register(TeacherSalary)
-class TeacherSalaryAdmin(admin.ModelAdmin):
+class TeacherSalaryAdmin(admin.ModelAdmin, ExportCsvMixin):
     """ Admin display class for the model StudentFee """
 
     # Delete Delete Action from admin
@@ -86,3 +91,7 @@ class TeacherSalaryAdmin(admin.ModelAdmin):
         'total_amount',
         'paid_on',
     )
+
+    actions = [
+        'export_as_csv',
+    ]
