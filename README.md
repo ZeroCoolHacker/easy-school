@@ -1,6 +1,6 @@
 # Easy School
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 This is a school management system that uses
@@ -104,6 +104,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <table>
   <tr>
     <td align="center"><a href="https://github.com/mrunderline"><img src="https://avatars2.githubusercontent.com/u/23085360?v=4" width="100px;" alt=""/><br /><sub><b>ali madihi bidgoli</b></sub></a><br /><a href="https://github.com/ZeroCoolHacker/easy-school/commits?author=mrunderline" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mmoomocow"><img src="https://avatars1.githubusercontent.com/u/44288823?v=4" width="100px;" alt=""/><br /><sub><b>mmoomocow</b></sub></a><br /><a href="https://github.com/ZeroCoolHacker/easy-school/issues?q=author%3Ammoomocow" title="Bug reports">🐛</a> <a href="https://github.com/ZeroCoolHacker/easy-school/commits?author=mmoomocow" title="Code">💻</a></td>
   </tr>
 </table>
 
