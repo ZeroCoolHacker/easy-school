@@ -74,7 +74,7 @@ If you have any more questions you can join the gitter room [![Gitter](https://b
 - [x] Minimize the number of queries for each view
 - [x] Add Teachers Record to admin
 - [x] Add Teachers Salary Record to admin
-- [ ] Export Data in csv format from admin
+- [x] Export Data in csv format from admin
 - [ ] Add graph comparing teacher salaries given vs student's fee collected
 
 
@@ -89,3 +89,4 @@ Everyone who contributes to easy-school gets a spot here.
 * [@davidkarabas](https://github.com/davidkarabas)
 * [@mmoomocow](https://github.com/mmoomocow)
 * [@MohanChhabaria](https://github.com/MohanChhabaria)
+* [@mrunderline](https://github.com/mrunderline)
