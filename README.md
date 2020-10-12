@@ -105,6 +105,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/mrunderline"><img src="https://avatars2.githubusercontent.com/u/23085360?v=4" width="100px;" alt=""/><br /><sub><b>ali madihi bidgoli</b></sub></a><br /><a href="https://github.com/ZeroCoolHacker/easy-school/commits?author=mrunderline" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/adamzavacky"><img src="https://avatars3.githubusercontent.com/u/44172077?v=4" width="100px;" alt=""/><br /><sub><b>adamzavacky</b></sub></a><br /><a href="#design-adamzavacky" title="Design">🎨</a> <a href="https://github.com/ZeroCoolHacker/easy-school/commits?author=adamzavacky" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/jvdoorn"><img src="https://avatars1.githubusercontent.com/u/19390615?v=4" width="100px;" alt=""/><br /><sub><b>Julian van Doorn</b></sub></a><br /><a href="https://github.com/ZeroCoolHacker/easy-school/commits?author=jvdoorn" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/MohanChhabaria"><img src="https://avatars2.githubusercontent.com/u/63086398?v=4" width="100px;" alt=""/><br /><sub><b>Mohan Chhabaria</b></sub></a><br /><a href="#design-MohanChhabaria" title="Design">🎨</a> <a href="https://github.com/ZeroCoolHacker/easy-school/commits?author=MohanChhabaria" title="Code">💻</a></td>
   </tr>
 </table>
 
