@@ -13,6 +13,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ismailuddin",
+      "name": "I Uddin",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/99201?v=4",
+      "profile": "http://ismailuddin.github.io",
+      "contributions": [
+        "infra",
+        "platform"
+      ]
     }
   ],
   "contributorsPerLine": 7,
