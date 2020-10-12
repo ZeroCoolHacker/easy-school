@@ -84,16 +84,6 @@ If you have any more questions you can join the gitter room [![Gitter](https://b
 ## Licensing
 This Project is Licensed under [GLWTPL](LICENSE)
 
-## Hall of fame
-Everyone who contributes to easy-school gets a spot here.
-* [@ZeroCoolHacker](https://github.com/ZeroCoolHacker)
-* [@Argetan](https://github.com/Argetan)
-* [@ismailuddin](https://github.com/ismailuddin)
-* [@davidkarabas](https://github.com/davidkarabas)
-* [@mmoomocow](https://github.com/mmoomocow)
-* [@MohanChhabaria](https://github.com/MohanChhabaria)
-* [@mrunderline](https://github.com/mrunderline)
-
 ## Contributors ✨
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
