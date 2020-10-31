@@ -120,13 +120,19 @@ class FinanceSummaryAdmin(admin.ModelAdmin):
             month_year = "{}-{}".format(salary['month'].month, salary['month'].year)
             data[month_year] = {
                 "salaries": salary['total'],
-                "fees": 0
+                "fees": 0,
+                "profit": salary['total']
             }
 
         for fee in monthly_fees:
             month_year = "{}-{}".format(fee['month'].month, fee['month'].year)
-            data[month_year]['fees'] = fee['total']
-
+            if month_year in data:
+                data[month_year]['fees'] = fee['total']
+                data[month_year]['profit'] = data[month_year]['salaries'] - fee['total']
+            else:
+                data[month_year]['salaries'] = 0
+                data[month_year]['fees'] = fee['total']
+                data[month_year]['profit'] = 0 - fee['total']
 
         # Prepare data to graph format
         labels, salaries, fees = ([] for i in range(3))
@@ -141,11 +147,11 @@ class FinanceSummaryAdmin(admin.ModelAdmin):
             'labels': labels,
             'datasets': [{
                 'label': "Teacher",
-                'backgroundColor': "blue",
+                'backgroundColor': "#F5DD5D",
                 'data': salaries
             }, {
                 'label': "Student",
-                'backgroundColor': "red",
+                'backgroundColor': "#44B78B",
                 'data': fees
             }]
         }

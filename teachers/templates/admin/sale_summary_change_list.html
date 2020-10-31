@@ -1,6 +1,6 @@
 {% extends 'admin/change_list.html' %}
 {% block content_title %}
-  <h1>Finance Summary </h1>
+<h1>Finance Summary</h1>
 {% endblock %}
 
 {% load humanize %}
@@ -11,19 +11,24 @@
   <table>
     <thead>
       <tr>
-        <th>
+        <th style="padding: 8px;">
           <div class=”text”>
             Month
           </div>
         </th>
-        <th>
+        <th style="padding: 8px;">
           <div class=”text”>
             Salaries
           </div>
         </th>
-        <th>
+        <th style="padding: 8px;">
           <div class=”text”>
             Fees
+          </div>
+        </th>
+        <th style="padding: 8px;">
+          <div class=”text”>
+            <strong>Profit</strong>
           </div>
         </th>
       </tr>
@@ -31,9 +36,10 @@
     <tbody>
       {% for key, value in data.items %}
       <tr class="{% cycle 'row1' 'row2' %}">
-        <td> {{ key }} </td>
-        <td> {{ value.salaries }} </td>
-        <td> {{ value.fees }} </td>
+        <td>{{ key }}</td>
+        <td>{{ value.salaries }}</td>
+        <td>{{ value.fees }}</td>
+        <td><strong>{{ value.profit }}</strong></td>
       </tr>
       {% endfor %}
     </tbody>
@@ -42,24 +48,24 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script type="text/javascript">
-var ctx = document.getElementById("myChart").getContext("2d");
-var data = JSON.parse("{{ graph_data | escapejs }}")
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var data = JSON.parse("{{ graph_data | escapejs }}")
 
-var myBarChart = new Chart(ctx, {
-  type: 'bar',
-  data: data,
-  options: {
-    responsive: false,
-    barValueSpacing: 20,
-    scales: {
-      yAxes: [{
-        ticks: {
-          min: 0,
-        }
-      }]
+  var myBarChart = new Chart(ctx, {
+    type: 'bar',
+    data: data,
+    options: {
+      responsive: false,
+      barValueSpacing: 20,
+      scales: {
+        yAxes: [{
+          ticks: {
+            min: 0,
+          }
+        }]
+      }
     }
-  }
-});
+  });
 
 </script>
 {% endblock %}
