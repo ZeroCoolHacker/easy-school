@@ -37,8 +37,15 @@ class TeacherSalary(models.Model):
     paid_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'Fee : {self.student.full_name()} {str(self.date_submitted)}'
+        return f'Salary : {self.teacher.full_name} {str(self.paid_on)}'
 
     @property
     def month_name(self):
         return calendar.month_name[valid_until.month]
+
+
+class FinanceSummary(TeacherSalary):
+    class Meta:
+        proxy = True
+        verbose_name = 'Finance Summary'
+        verbose_name_plural = 'Finance Summary'
