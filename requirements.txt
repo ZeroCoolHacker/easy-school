@@ -5,7 +5,7 @@ django-debug-toolbar
 django-filter
 django-flat-responsive
 django-flat-theme
-django
+django==4.2.1
 pillow
 pytz
 sqlparse
