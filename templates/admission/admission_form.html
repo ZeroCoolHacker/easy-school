@@ -1,0 +1,20 @@
+<form method="post" action=""> 
+
+
+    {% csrf_token %}
+    <h2>Admission Form</h2>
+
+
+  {% include 'admission/personal_information_form.html' %}
+  {% include 'admission/educational_background_form.html' %}
+  {% include 'admission/parent_guardian_form.html' %}
+  {% include 'admission/emergency_contact_form.html' %}
+  
+
+    <div class="form-group">
+      <label for="additional_information">Additional Information:</label>
+      <textarea class="form-control" id="additional_information" name="additional_information"></textarea>
+    </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+  </form>
