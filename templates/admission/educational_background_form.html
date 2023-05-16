@@ -1,12 +1,7 @@
 <form method="post" action="">
     {% csrf_token %}
     <h2>Educational Background</h2>
-    <div class="form-group">
-      <label for="current_school_name">Current School Name:</label>
-      <input type="text" class="form-control" id="current_school_name" name="current_school_name" required>
-    </div>
-
-  
+    {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  
+ 

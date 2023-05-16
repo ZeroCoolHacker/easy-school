@@ -1,11 +1,7 @@
 <form method="POST" action="">
     {% csrf_token %}
     <h2>Personal Information</h2>
-    <div class="form-group">
-      <label for="full_name">Full Name:</label>
-      <input type="text" class="form-control" id="full_name" name="full_name" required>
-    </div>
-    <!-- Add more fields for the rest of the Personal Information model fields -->
+    {{ form.as_p }}
   
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>

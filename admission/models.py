@@ -80,4 +80,4 @@ class AdmissionForm(models.Model):
     date_parent_guardian_signed = models.DateField()
 
     def __str__(self):
-        return self.personal_information.full_name
+        return f"{self.personal_information.first_name}   {self.personal_information.last_name}"

@@ -52,7 +52,7 @@ def parent_guardian_view2(request):
     else:
         form = ParentGuardianForm(prefix='guardian2')
     
-    return render(request, 'parent_guardian_form.html', {'form': form})
+    return render(request, 'admission/parent_guardian_form.html', {'form': form})
 
 
 def emergency_contact_view(request):

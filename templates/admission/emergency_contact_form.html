@@ -1,13 +1,15 @@
-<!-- emergency_contact_form.html -->
+
 <form method="post" action="">
     {% csrf_token %}
     <h2>Emergency Contact</h2>
-    <div class="form-group">
+    {% comment %} <div class="form-group">
       <label for="emergency_contact_name">Name:</label>
       <input type="text" class="form-control" id="emergency_contact_name" name="emergency_contact_name" required>
     </div>
     <!-- Add more fields for the rest of the Emergency Contact model fields -->
-  
+   {% endcomment %}
+
+   {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   
