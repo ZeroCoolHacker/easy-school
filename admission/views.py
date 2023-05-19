@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import PersonalInformationForm, EducationalBackgroundForm, ParentGuardianForm, EmergencyContactForm, AdmissionFormForm
-
+from .models import PersonalInformation, EducationalBackground, EmergencyContact
 
 
 
@@ -34,8 +34,11 @@ def educational_background_view(request):
 def parent_guardian_view(request):
     if request.method == 'POST':
         form = ParentGuardianForm(request.POST, prefix='guardian1')
+        person_data = PersonalInformation.objects.order_by('-id').first()
         if form.is_valid():
-            form.save()
+            personal_info = form.save(commit=False)
+            personal_info.personal_information = person_data
+            personal_info.save()
             return redirect('parent_guardian_form2')
     else:
         form = ParentGuardianForm(prefix='guardian1')
@@ -46,8 +49,11 @@ def parent_guardian_view(request):
 def parent_guardian_view2(request):
     if request.method == 'POST':
         form = ParentGuardianForm(request.POST, prefix='guardian2')
+        person_data = PersonalInformation.objects.order_by('-id').first()
         if form.is_valid():
-            form.save()
+            personal_info = form.save(commit=False)
+            personal_info.personal_information = person_data
+            personal_info.save()
             return redirect('emergency_contact_form')
     else:
         form = ParentGuardianForm(prefix='guardian2')
@@ -70,8 +76,15 @@ def emergency_contact_view(request):
 def admission_form_view(request):
     if request.method == 'POST':
         form = AdmissionFormForm(request.POST)
+        person_data = PersonalInformation.objects.order_by('-id').first()
+        contact = EmergencyContact.objects.order_by('-id').first()
+        education = EducationalBackground.objects.order_by('-id').first()
         if form.is_valid():
-            form.save()
+            personal_info = form.save(commit=False)
+            personal_info.personal_information = person_data
+            personal_info.emergency_contact = contact
+            personal_info.educational_background = education
+            personal_info.save()
             return redirect('success_page')
     else:
         form = AdmissionFormForm()

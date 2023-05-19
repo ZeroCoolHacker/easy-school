@@ -17,8 +17,8 @@ class EducationalBackgroundForm(forms.ModelForm):
 
 class ParentGuardianForm(forms.ModelForm):
     class Meta:
-        model = ParentGuardian
-        fields = '__all__'
+        model = Guardian
+        fields = ("name","relationship","phone_number","email",)
 
 
 class EmergencyContactForm(forms.ModelForm):
@@ -30,4 +30,4 @@ class EmergencyContactForm(forms.ModelForm):
 class AdmissionFormForm(forms.ModelForm):
     class Meta:
         model = AdmissionForm
-        fields = '__all__'
+        fields = ("course","additional_information","signature_applicant",'signature_parent_guardian',)

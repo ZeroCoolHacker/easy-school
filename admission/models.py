@@ -24,12 +24,7 @@ class PersonalInformation(models.Model):
         return self.full_name()
 
     def full_name(self):
-        return '{} {}'.format(self.first_name, self.last_name).capitalize()
-    
-
-
-
-    
+        return '{} {}'.format(self.first_name, self.last_name).capitalize()    
 
 class EducationalBackground(models.Model):
     current_school_name = models.CharField(max_length=100)
@@ -46,7 +41,8 @@ class EducationalBackground(models.Model):
     
 
 
-class ParentGuardian(models.Model):
+class Guardian(models.Model):
+    personal_information = models.ForeignKey(PersonalInformation, on_delete=models.CASCADE, related_name='guardian')
     name = models.CharField(max_length=100)
     relationship = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
@@ -69,15 +65,11 @@ class AdmissionForm(models.Model):
     course =models.ForeignKey(Course, on_delete=models.CASCADE)
     personal_information = models.OneToOneField(PersonalInformation, on_delete=models.CASCADE)
     educational_background = models.OneToOneField(EducationalBackground, on_delete=models.CASCADE)
-    guardian1 = models.OneToOneField(ParentGuardian, on_delete=models.CASCADE, related_name='guardian1')
-    guardian2 = models.OneToOneField(ParentGuardian, on_delete=models.CASCADE, related_name='guardian2')
     emergency_contact = models.OneToOneField(EmergencyContact, on_delete=models.CASCADE)
     additional_information = models.TextField()
-
     signature_applicant = models.CharField(max_length=100)
-    date_signed = models.DateField()
     signature_parent_guardian = models.CharField(max_length=100)
-    date_parent_guardian_signed = models.DateField()
+    date_signed = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.personal_information.first_name}   {self.personal_information.last_name}"

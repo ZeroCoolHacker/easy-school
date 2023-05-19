@@ -5,6 +5,6 @@ from admission.models import *
 admin.site.register(PersonalInformation)
 admin.site.register(EducationalBackground)
 admin.site.register(EmergencyContact)
-admin.site.register(ParentGuardian)
+admin.site.register(Guardian)
 admin.site.register(AdmissionForm)
 
