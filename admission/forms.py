@@ -6,13 +6,13 @@ from admission.models import *
 
 class PersonalInformationForm(forms.ModelForm):
     class Meta:
-        model = PersonalInformation
+        model = StudentPersonalInformation
         fields = '__all__'
     
 class EducationalBackgroundForm(forms.ModelForm):
     class Meta:
         model = EducationalBackground
-        fields = '__all__'
+        fields = ("current_school_name","current_school_address","current_school_city",'current_school_state_province',"current_school_postal_code",'current_school_country',"grade_level","dates_attended",)
 
 
 class ParentGuardianForm(forms.ModelForm):
@@ -24,7 +24,7 @@ class ParentGuardianForm(forms.ModelForm):
 class EmergencyContactForm(forms.ModelForm):
     class Meta:
         model = EmergencyContact
-        fields = '__all__'
+        fields = ("name", "relationship", "phone_number",)
 
 
 class AdmissionFormForm(forms.ModelForm):

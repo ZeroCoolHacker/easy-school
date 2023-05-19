@@ -3,22 +3,10 @@
     {% csrf_token %}
     <h2>Parent/Guardian Information</h2>
     <h3>Guardian 1</h3>
-    {% comment %} <div class="form-group">
-      <label for="guardian1_name">Name:</label>
-      <input type="text" class="form-control" id="guardian1_name" name="guardian1_name" required>
-    </div>
-    <!-- Add more fields for the rest of the Parent/Guardian model fields -->
-   {% endcomment %}
+
    {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  
-  <!-- For Guardian 2 -->
-  <form method="post" action="">
-    {% csrf_token %}
-    <h3>Guardian 2</h3>
 
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   

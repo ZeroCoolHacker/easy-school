@@ -6,7 +6,7 @@ from easyschool.utils import GENDER_CHOICES
 def user_directory_path(instance, filename):
     return 'user_{0}/{1}'.format(instance.admission_no, filename)
 
-class PersonalInformation(models.Model):
+class StudentPersonalInformation(models.Model):
     admission_no = models.IntegerField(auto_created=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
@@ -27,6 +27,7 @@ class PersonalInformation(models.Model):
         return '{} {}'.format(self.first_name, self.last_name).capitalize()    
 
 class EducationalBackground(models.Model):
+    personal_information = models.OneToOneField(StudentPersonalInformation, on_delete=models.CASCADE, related_name='educational_background')
     current_school_name = models.CharField(max_length=100)
     current_school_address = models.CharField(max_length=200)
     current_school_city = models.CharField(max_length=100)
@@ -42,7 +43,7 @@ class EducationalBackground(models.Model):
 
 
 class Guardian(models.Model):
-    personal_information = models.ForeignKey(PersonalInformation, on_delete=models.CASCADE, related_name='guardian')
+    personal_information = models.ForeignKey(StudentPersonalInformation, on_delete=models.CASCADE, related_name='guardian')
     name = models.CharField(max_length=100)
     relationship = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
@@ -53,6 +54,7 @@ class Guardian(models.Model):
 
 
 class EmergencyContact(models.Model):
+    personal_information = models.OneToOneField(StudentPersonalInformation, models.CASCADE, related_name="emergency_contact")
     name = models.CharField(max_length=100)
     relationship = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=20)
@@ -63,9 +65,7 @@ class EmergencyContact(models.Model):
 
 class AdmissionForm(models.Model):
     course =models.ForeignKey(Course, on_delete=models.CASCADE)
-    personal_information = models.OneToOneField(PersonalInformation, on_delete=models.CASCADE)
-    educational_background = models.OneToOneField(EducationalBackground, on_delete=models.CASCADE)
-    emergency_contact = models.OneToOneField(EmergencyContact, on_delete=models.CASCADE)
+    personal_information = models.OneToOneField(StudentPersonalInformation, on_delete=models.CASCADE, related_name="admission_form")
     additional_information = models.TextField()
     signature_applicant = models.CharField(max_length=100)
     signature_parent_guardian = models.CharField(max_length=100)
