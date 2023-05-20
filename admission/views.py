@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import PersonalInformationForm, EducationalBackgroundForm, ParentGuardianForm, EmergencyContactForm, AdmissionFormForm
-from .models import StudentPersonalInformation, EducationalBackground, EmergencyContact, AdmissionForm
-
+from .models import StudentPersonalInformation
+from students.models import Student
 
 
 def personal_information_view(request):
@@ -88,9 +88,37 @@ def success_page(request):
 
 
 def studentsdetail(request):
-
     detail = StudentPersonalInformation.objects.all()
+
 
     return render(request ,"admission/studentsdetail.html",{
         "details":detail,
+    })
+
+
+
+
+def shift_data_view(request, pk):
+    if request.method == 'POST':
+        personal_info_queryset = StudentPersonalInformation.objects.filter(pk=pk)
+        if personal_info_queryset.exists():
+            personal_info = personal_info_queryset.first()
+            student = Student(
+                admission_no=personal_info.admission_no,
+                date_of_admission=personal_info.date_of_admissionapplication,
+                first_name=personal_info.first_name,
+                last_name=personal_info.last_name,
+                gender=personal_info.gender,
+                date_of_birth=personal_info.date_of_birth,
+                address=personal_info.address,
+                current_class=personal_info.admission_form.course,
+                profile_image=personal_info.profile_image,
+                is_studying = True,
+            )
+            student.save()
+
+            return redirect('success_page')
+
+    return render(request, 'admission/studentsdetail.html',{
+        'student':student,
     })
