@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'course.apps.CourseConfig',
     'debug_toolbar',
     'teachers.apps.TeachersConfig',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    "admission",
 ]
 
 MIDDLEWARE = [

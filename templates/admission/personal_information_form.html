@@ -1,0 +1,7 @@
+<form method="POST" action="">
+    {% csrf_token %}
+    <h2>Personal Information</h2>
+    {{ form.as_p }}
+  
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>

@@ -11,6 +11,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('signup/', views.TeacherSignUpFormView.as_view(), name='signup'),
     path('login/', views.login, name='login'),
+    path("admission/", include("admission.urls")),
 ]
 if settings.DEBUG:
     import debug_toolbar  # Add debugging urls
