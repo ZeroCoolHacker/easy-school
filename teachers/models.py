@@ -17,6 +17,7 @@ class Teacher(models.Model):
     date_of_birth = models.DateField()
     social_security_number = models.CharField(max_length=30)
     phone_no = models.CharField(max_length=11, default="0000000")
+    cnic = models.CharField(max_length=13)
     address = models.CharField(max_length=150, default="Not Set")
     is_teaching = models.BooleanField(default=True)
     profile_image = models.ImageField(upload_to=user_directory_path, blank=True)
