@@ -18,7 +18,7 @@ It is best to use the python `virtualenv` tool to build locally:
 ```bash
 > virtualenv venv
 > source venv/bin/activate
-> git clone https://github.com/ZeroCoolHacker/easy-school .
+> git clone https://github.com/clementerr/easy-school .
 ```
 Then you navigate to the base directory of the project and install the requirements in your virtual environment
 
