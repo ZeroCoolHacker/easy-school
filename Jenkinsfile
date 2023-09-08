@@ -4,7 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'App Build'
-        sh '''sudo docker-compose build
+        sh '''docker-compose build
 '''
       }
     }
