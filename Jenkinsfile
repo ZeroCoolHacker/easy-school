@@ -4,8 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'App Build'
-        sh '''cd /home/ubuntu/easy-school
-docker-compose build
+        sh '''docker-compose build
 '''
       }
     }
