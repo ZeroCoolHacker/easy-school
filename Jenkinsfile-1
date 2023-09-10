@@ -1,23 +1,17 @@
 pipeline {
   agent any
   stages {
-    stage('version') {
-      steps {
-        sh 'python3 --version'
-      }
-    }
-    stage('Build') { 
-      steps {
-        sh 'python -m py_compile sources/add2vals.py sources/calc.py' 
-        stash(name: 'compiled-results', includes: 'sources/*.py*') 
-      }
-    }
     stage('Scan') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube') {
           sh 'echo scanpath-${scannerHome}'
           sh '/opt/sonar-scanner/bin/sonar-scanner'
         }
+      }
+    }
+    stage('Build') {
+      steps {
+        sh 'sudo docker compose build'
       }
     }
   }
