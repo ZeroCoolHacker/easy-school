@@ -16,7 +16,7 @@ pipeline {
     }
     stage('Unit Test') {
       steps {
-        sh 'sudo docker-compose up'
+        sh 'nohup sudo docker-compose up &'
         sh 'python course/tests.py'
         sh 'python students/tests.py'
         sh 'python teachers/tests.py'
