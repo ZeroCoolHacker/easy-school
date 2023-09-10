@@ -1,5 +1,5 @@
 pipeline {
-  agent easyschool1
+  agent any
   stages {
     stage('version') {
       steps {
