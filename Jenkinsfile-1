@@ -10,7 +10,7 @@ pipeline {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube') {
           sh 'echo scanpath-${scannerHome}'
-          sh '${scannerHome}/bin/sonar-scanner'
+          sh '/opt/sonar-scanner/bin/sonar-scanner'
         }
       }
     }
