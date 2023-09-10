@@ -8,7 +8,8 @@ pipeline {
     }
     stage('Scan') {
       steps {
-        withSonarQubeEnv(installationName: 'sonarqube') { 
+        withSonarQubeEnv(installationName: 'sonarqube') {
+          sh 'echo scanpath-${scannerHome}'
           sh '${scannerHome}/bin/sonar-scanner'
         }
       }
