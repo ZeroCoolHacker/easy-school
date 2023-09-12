@@ -24,7 +24,7 @@ pipeline {
     }
     stage('Release') {
       steps {
-        sh 'Delivery stage'
+        sh 'echo Delivery'
       }
     }
   }
