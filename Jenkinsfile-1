@@ -33,7 +33,7 @@ pipeline {
     }
     stage('Release') {
       steps {
-        withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PSW', usernameVariable: 'USER')]){
+        withCredentials([usernamePassword(credentialsId: ${NEXUS_CREDENTIAL_ID}, passwordVariable: 'PSW', usernameVariable: 'USER')]){
           sh 'sudo docker tag f79d1862bc0f 172.31.42.214:5000/jenkinsci-easy-school:1.0'
           sh 'echo ${PSW} | sudo docker login -u ${USER} --password-stdin 172.31.42.214:5000'
           sh 'sudo docker push 172.31.42.214:5000/jenkinsci-easy-school:1.0'
