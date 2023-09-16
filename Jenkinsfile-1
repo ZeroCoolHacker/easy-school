@@ -27,7 +27,7 @@ pipeline {
         sh 'sudo docker-compose build'
         echo IMAGEID
         script { 
-          IMAGEID = $(sudo docker image ls --filter 'reference=easy-school_web:latest' --format "{{.ID}}")
+          IMAGEID = sudo docker image ls --filter 'reference=easy-school_web:latest' --format "{{.ID}}"
         }
         echo IMAGEID
         sh 'env'
