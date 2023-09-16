@@ -39,7 +39,7 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'nexuslogin', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
           sh 'echo ${PASSWD} | sudo docker login -u ${USER} --password-stdin ${NEXUS_URL}'
-          sh 'sudo docker push ${NEXUS_URL}/jenkinsci-easy-school:1.0'
+          sh 'sudo docker push ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
         }
       }
     }
