@@ -30,7 +30,7 @@ pipeline {
             script: 'echo test',
             returnStdout: true
           ).trim()
-          echo $IMAGEID
+          echo IMAGEID
         }
         sh 'env'
       }
