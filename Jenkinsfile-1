@@ -3,7 +3,6 @@ pipeline {
 
   environment {
     APP_NAME ="easy-school"
-    DATE=$()
     DATE = sh(script: 'date "+%Y-%m-%d"', returnStdout: true).trim()
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
