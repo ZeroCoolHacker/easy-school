@@ -26,8 +26,11 @@ pipeline {
     stage('Build') {
       steps {
         sh 'sudo docker-compose build'
-        IMAGEID = sh(script: 'date "+%Y-%m-%d"', returnStdout: true).trim()
-        echo $IMAGEID
+        script {
+          def output = sh(returnStdout: true, script: 'pwd')
+          echo "Output: ${output}"
+        }
+        
       }
     }
 /*
