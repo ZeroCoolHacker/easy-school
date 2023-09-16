@@ -23,9 +23,9 @@ pipeline {
     }
     stage('Build') {
       steps {
+        sh 'sudo docker-compose build'
+        sh 'env.IMAGEID=$(sudo docker image ls --filter 'reference=easy-school_web:latest' --format "{{.ID}}")'
         sh 'env'
-        sh 'sudo docker-compose build -t ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
-        sh 'sudo docker ps -a'
       }
     }
     stage('Unit Test') {
@@ -40,8 +40,9 @@ pipeline {
       steps {
         withCredentials([usernamePassword(credentialsId: 'nexuslogin', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
           sh 'echo ${PASSWD} | sudo docker login -u ${USER} --password-stdin ${NEXUS_URL}'
-          sh 'sudo docker push ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
         }
+        sh 'sudo docker tag $env.ID ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
+        sh 'sudo docker push ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
       }
     }
   }
