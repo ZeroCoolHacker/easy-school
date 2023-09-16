@@ -4,7 +4,7 @@ pipeline {
 
   environment {
     APP_NAME ="easy-school"
-    DATE = sh(script: 'date "+%Y-%m-%d"', returnStdout: true).trim()
+    DATE = sh(script: 'date "+%Y.%m.%d"', returnStdout: true).trim()
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
     NEXUS_URL = "172.31.42.214:5000"
@@ -13,7 +13,7 @@ pipeline {
   }
 
   stages {
-/*
+
     stage('Static Code Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube') {
@@ -23,7 +23,7 @@ pipeline {
         }
       }
     }
-*/
+
     stage('Build') {
       steps {
         sh 'sudo docker-compose build'
@@ -34,7 +34,7 @@ pipeline {
         
       }
     }
-/*
+
     stage('Unit Test') {
       steps {
         sh 'nohup sudo docker-compose up &'
@@ -43,7 +43,7 @@ pipeline {
         sh 'python teachers/tests.py'
       }
     }
-*/
+
     stage('Release') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'nexuslogin', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
