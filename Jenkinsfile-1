@@ -5,8 +5,6 @@ pipeline {
   environment {
     APP_NAME ="easy-school"
     DATE = sh(script: 'date "+%Y.%m.%d"', returnStdout: true).trim()
-    NEXUS_VERSION = "nexus3"
-    NEXUS_PROTOCOL = "http"
     NEXUS_URL = "172.31.42.214:5000"
     NEXUS_REPOSITORY = "nexus-docker"
     NEXUS_CREDENTIAL_ID = "nexuslogin"
