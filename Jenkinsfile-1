@@ -26,7 +26,6 @@ pipeline {
     stage('Build') {
       steps {
         sh 'sudo docker-compose build'
-        echo $IMAGEID
         script {
           IMAGEID = sh (
             script: 'echo test',
