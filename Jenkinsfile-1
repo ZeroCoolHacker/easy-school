@@ -17,8 +17,6 @@ pipeline {
     stage('Static Code Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube') {
-          sh 'env'
-          sh 'echo scanpath-${scannerHome}'
           sh '/opt/sonar-scanner/bin/sonar-scanner'
         }
       }
@@ -29,9 +27,7 @@ pipeline {
         sh 'sudo docker-compose build'
         script {
           imageid = sh(returnStdout: true, script: 'sudo docker image ls --filter \'reference=easy-school_web:latest\' --format \"{{.ID}}\"')
-          echo "Output: ${imageid}"
         }
-        
       }
     }
 
@@ -49,7 +45,6 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'nexuslogin', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
           sh 'echo ${PASSWD} | sudo docker login -u ${USER} --password-stdin ${NEXUS_URL}'
         }
-        echo "Output: ${imageid}"
         withEnv(["DOCKERID=${imageid}"]) {
           sh 'sudo docker tag $DOCKERID ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
         }
