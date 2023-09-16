@@ -1,4 +1,3 @@
-def IMAGEID=""
 pipeline {
   agent any
 
@@ -26,10 +25,12 @@ pipeline {
       steps {
         sh 'sudo docker-compose build'
         echo IMAGEID
-        script { 
-          IMAGEID = sudo docker image ls --filter 'reference=easy-school_web:latest' --format "{{.ID}}"
-        }
-        echo IMAGEID
+        IMAGEID = sh (
+          script: 'sudo docker image ls --filter \'reference=easy-school_web:latest\' --format "{{.ID}}"',
+          returnStdout: true
+        ).trim()
+               
+        echo $IMAGEID
         sh 'env'
       }
     }
