@@ -24,13 +24,14 @@ pipeline {
     stage('Build') {
       steps {
         sh 'sudo docker-compose build'
-        echo IMAGEID
-        IMAGEID = sh (
-          script: 'echo test',
-          returnStdout: true
-        ).trim()
-               
         echo $IMAGEID
+        script {
+          IMAGEID = sh (
+            script: 'echo test',
+            returnStdout: true
+          ).trim()
+          echo $IMAGEID
+        }
         sh 'env'
       }
     }
