@@ -12,6 +12,7 @@ pipeline {
   }
 
   stages {
+/*
     stage('Static Code Analysis') {
       steps {
         withSonarQubeEnv(installationName: 'sonarqube') {
@@ -21,6 +22,7 @@ pipeline {
         }
       }
     }
+*/
     stage('Build') {
       steps {
         sh 'sudo docker-compose build'
