@@ -27,7 +27,7 @@ pipeline {
       steps {
         sh 'sudo docker-compose build'
         script {
-          IMAGEID = sh (
+          def IMAGEID = sh (
             script: 'echo test',
             returnStdout: true
           ).trim()
