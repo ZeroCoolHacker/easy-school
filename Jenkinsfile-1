@@ -24,8 +24,8 @@ pipeline {
       steps {
         sh 'env'
         sh 'DATE=$(date "+%Y-%m-%d")'
-        sh 'echo fecha ${DATE}
-        sh 'echo ${BUILD_ID}
+        sh 'echo fecha ${DATE}'
+        sh 'echo ${BUILD_ID}'
         sh 'sudo docker-compose build -t  ${NEXUS_URL}/${BRANCH_NAME}-${APP_NAME}:${DATE}-${BUILD_ID}'
       }
     }
