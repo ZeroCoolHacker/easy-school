@@ -25,6 +25,7 @@ pipeline {
       steps {
         sh 'env'
         sh 'sudo docker-compose build -t ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
+        sh 'sudo docker ps -a'
       }
     }
     stage('Unit Test') {
