@@ -50,7 +50,7 @@ pipeline {
           sh 'echo ${PASSWD} | sudo docker login -u ${USER} --password-stdin ${NEXUS_URL}'
         }
         echo "Output: ${imageid}"
-        withEnv(['DOCKERID'=${imageid}]) {
+        withEnv(['DOCKERID=${imageid}']) {
           sh 'sudo docker tag $DOCKERID ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
         }
         sh 'sudo docker push ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
