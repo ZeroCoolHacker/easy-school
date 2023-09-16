@@ -31,11 +31,12 @@ pipeline {
             script: 'echo test',
             returnStdout: true
           ).trim()
-          echo IMAGEID
+          echo $IMAGEID
         }
         sh 'env'
       }
     }
+/*
     stage('Unit Test') {
       steps {
         sh 'nohup sudo docker-compose up &'
@@ -53,5 +54,6 @@ pipeline {
         sh 'sudo docker push ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
       }
     }
+*/
   }
 }
