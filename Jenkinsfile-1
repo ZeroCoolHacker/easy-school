@@ -26,14 +26,8 @@ pipeline {
     stage('Build') {
       steps {
         sh 'sudo docker-compose build'
-        script {
-          def IMAGEID = sh (
-            script: 'echo test',
-            returnStdout: true
-          ).trim()
-          echo $IMAGEID
-        }
-        sh 'env'
+        IMAGEID = sh(script: 'date "+%Y-%m-%d"', returnStdout: true).trim()
+        echo $IMAGEID
       }
     }
 /*
@@ -45,6 +39,7 @@ pipeline {
         sh 'python teachers/tests.py'
       }
     }
+
     stage('Release') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'nexuslogin', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
