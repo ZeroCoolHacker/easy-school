@@ -1,4 +1,4 @@
-def output
+def imageid
 pipeline {
   agent any
 
@@ -28,8 +28,8 @@ pipeline {
       steps {
         sh 'sudo docker-compose build'
         script {
-          output = sh(returnStdout: true, script: 'sudo docker image ls --filter \'reference=easy-school_web:latest\' --format \"{{.ID}}\"')
-          echo "Output: ${output}"
+          imageid = sh(returnStdout: true, script: 'sudo docker image ls --filter \'reference=easy-school_web:latest\' --format \"{{.ID}}\"')
+          echo "Output: ${imageid}"
         }
         
       }
@@ -43,16 +43,16 @@ pipeline {
         sh 'python teachers/tests.py'
       }
     }
-
+*/
     stage('Release') {
       steps {
         withCredentials([usernamePassword(credentialsId: 'nexuslogin', passwordVariable: 'PASSWD', usernameVariable: 'USER')]) {
           sh 'echo ${PASSWD} | sudo docker login -u ${USER} --password-stdin ${NEXUS_URL}'
         }
-        sh 'sudo docker tag $env.ID ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
+        echo "Output: ${imageid}"
+        sh 'sudo docker tag $env.imageid ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
         sh 'sudo docker push ${NEXUS_URL}/jenkinsci-${APP_NAME}:${DATE}-${BUILD_ID}'
       }
     }
-*/
   }
 }
