@@ -1,8 +1,5 @@
 def imageid
 pipeline {
-  when {
-    branch 'master'
-  }
   agent any
 
   environment {
