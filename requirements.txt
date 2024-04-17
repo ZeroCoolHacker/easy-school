@@ -1,8 +1,8 @@
 -i https://pypi.org/simple/
-django-admin-interface
-django-colorfield
-django-debug-toolbar
-django-filter
+django-admin-interface==0.28.6
+django-colorfield==0.11.0
+django-debug-toolbar==4.3.0
+django-filter==24.2
 django-flat-responsive==2.0
 django-flat-theme==1.1.4
 django==4.2
